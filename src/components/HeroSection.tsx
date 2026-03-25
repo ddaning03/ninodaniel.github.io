@@ -85,18 +85,30 @@ export default function HeroSection({ onWebClick }: HeroSectionProps) {
 
         <div className="flex justify-end pb-12 lg:pb-24">
           <ScrollReveal delay={0.8} direction="right">
-            <MagneticButton
-              className="cursor-pointer group relative bg-vermilion text-white w-48 h-48 lg:w-64 lg:h-64 flex items-center justify-center transition-transform duration-500"
-              onClick={onWebClick}
-              ariaLabel="Ver casos de desarrollo web"
-            >
-              <span
-                className="font-bold text-center leading-tight uppercase tracking-widest text-sm lg:text-base"
+            <div className="flex flex-col gap-6 items-end">
+              <MagneticButton
+                className="cursor-pointer group relative bg-vermilion text-white w-48 h-48 lg:w-64 lg:h-64 flex items-center justify-center transition-transform duration-500"
+                onClick={onWebClick}
+                ariaLabel="Ver casos de desarrollo web"
+              >
+                <span
+                  className="font-bold text-center leading-tight uppercase tracking-widest text-sm lg:text-base"
+                  style={{ fontFamily: "var(--font-syne)" }}
+                >
+                  VER CASOS <br /> WEB ➝
+                </span>
+              </MagneticButton>
+
+              <a 
+                href="https://wa.me/5491167644591"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-400 hover:text-vermilion transition-colors flex items-center gap-2"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
-                VER CASOS <br /> WEB ➝
-              </span>
-            </MagneticButton>
+                CONSULTA POR WHATSAPP ↗
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </div>

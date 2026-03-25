@@ -162,10 +162,15 @@ export default function PerformanceSection({
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <p className="text-xl lg:text-2xl opacity-60 max-w-lg leading-relaxed">
-                Tus anuncios no necesitan ser arte, necesitan detener el
-                scroll y reducir tu CPA.
-              </p>
+              <div className="space-y-6">
+                <p className="text-xl lg:text-2xl opacity-60 max-w-lg leading-relaxed">
+                  Tus anuncios no necesitan ser arte, necesitan detener el
+                  scroll y reducir tu CPA.
+                </p>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 border-t border-white/5 pt-4 max-w-sm">
+                  Nota: Las métricas mostradas son benchmarks de referencia basados en optimizaciones reales para negocios locales. 
+                </p>
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.45}>

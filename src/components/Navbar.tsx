@@ -22,15 +22,20 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
           <span className="opacity-50">ESTRATEGA VISUAL</span>
         </div>
 
-        <MagneticButton
-          className="cursor-pointer bg-vermilion text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-black transition-colors duration-300"
-          onClick={onCtaClick}
-          ariaLabel="Agendar llamada estratégica"
+        <a
+          href="https://wa.me/5491167644591?text=Hola%20Daniel!%20Vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20consultar%20un%20presupuesto."
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span style={{ fontFamily: "var(--font-syne)" }}>
-            Agendar Llamada
-          </span>
-        </MagneticButton>
+          <MagneticButton
+            className="cursor-pointer bg-vermilion text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-black transition-colors duration-300"
+            ariaLabel="Consultar presupuesto por WhatsApp"
+          >
+            <span style={{ fontFamily: "var(--font-syne)" }}>
+              Consultar Presupuesto
+            </span>
+          </MagneticButton>
+        </a>
       </div>
     </nav>
   );

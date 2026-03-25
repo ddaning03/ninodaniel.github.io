@@ -4,11 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
+import ServicesSection from "@/components/ServicesSection";
 import PerformanceSection from "@/components/PerformanceSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import MethodologySection from "@/components/MethodologySection";
 import OffCanvasDrawer from "@/components/OffCanvasDrawer";
 import ContactDrawer from "@/components/ContactDrawer";
 import ProjectCard from "@/components/ProjectCard";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 /* ─── Drawer content for Web cases ─── */
 function WebDrawerContent() {
@@ -131,7 +135,13 @@ export default function Home() {
 
       <HeroSection onWebClick={() => setWebDrawerOpen(true)} />
 
+      <AboutSection />
+
+      <ServicesSection />
+
       <PerformanceSection onAdsClick={() => setAdsDrawerOpen(true)} />
+
+      <TestimonialsSection />
 
       <MethodologySection onContactClick={() => setContactOpen(true)} />
 
@@ -156,11 +166,12 @@ export default function Home() {
         <AdsDrawerContent />
       </OffCanvasDrawer>
 
-      {/* Contact drawer */}
       <ContactDrawer
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
       />
+
+      <FloatingWhatsApp />
     </main>
   );
 }
