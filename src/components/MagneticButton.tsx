@@ -7,6 +7,7 @@ interface MagneticButtonProps {
   className?: string;
   onClick?: () => void;
   ariaLabel?: string;
+  disabled?: boolean;
 }
 
 export default function MagneticButton({
@@ -14,14 +15,17 @@ export default function MagneticButton({
   className = "",
   onClick,
   ariaLabel,
+  disabled = false,
 }: MagneticButtonProps) {
   return (
     <motion.button
       className={className}
       onClick={onClick}
       aria-label={ariaLabel}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.97 }}
+      disabled={disabled}
+      whileHover={disabled ? {} : { scale: 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.97 }}
+      style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {children}

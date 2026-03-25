@@ -18,11 +18,36 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setIsSubmitting(true);
+    setError(null);
+
+    // Reemplaza 'TU_ID_DE_FORMSPREE' por el ID que te den al crear el formulario en formspree.io
+    const FORMSPREE_ID = "xjgpvkgn";
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError("Hubo un error al enviar el mensaje. Prueba de nuevo.");
+      }
+    } catch (err) {
+      setError("Error de conexión. Revisa tu internet.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -58,6 +83,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 setFormData={setFormData}
                 submitted={submitted}
                 onSubmit={handleSubmit}
+                isSubmitting={isSubmitting}
+                error={error}
               />
             </div>
           </motion.div>
@@ -83,6 +110,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 setFormData={setFormData}
                 submitted={submitted}
                 onSubmit={handleSubmit}
+                isSubmitting={isSubmitting}
+                error={error}
               />
             </div>
           </motion.div>
@@ -122,11 +151,15 @@ function ContactContent({
   setFormData,
   submitted,
   onSubmit,
+  isSubmitting,
+  error,
 }: {
   formData: { name: string; email: string; message: string };
   setFormData: React.Dispatch<React.SetStateAction<{ name: string; email: string; message: string }>>;
   submitted: boolean;
   onSubmit: (e: React.FormEvent) => void;
+  isSubmitting: boolean;
+  error: string | null;
 }) {
   return (
     <div className="space-y-10">
@@ -227,6 +260,7 @@ function ContactContent({
               id="contact-name"
               type="text"
               required
+              name="name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors"
@@ -241,6 +275,7 @@ function ContactContent({
               id="contact-email"
               type="email"
               required
+              name="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors"
@@ -254,6 +289,7 @@ function ContactContent({
             <textarea
               id="contact-message"
               required
+              name="message"
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -262,12 +298,20 @@ function ContactContent({
             />
           </div>
 
+          {error && (
+            <p className="text-vermilion text-xs font-bold uppercase tracking-widest animate-pulse">
+              {error}
+            </p>
+          )}
+
           <MagneticButton
-            className="w-full bg-vermilion text-white font-bold py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-dark-zinc transition-all duration-500"
+            className={`w-full bg-vermilion text-white font-bold py-4 uppercase tracking-[0.2em] transition-all duration-500 ${isSubmitting ? "opacity-50 cursor-wait" : "hover:bg-white hover:text-dark-zinc"
+              }`}
             ariaLabel="Enviar mensaje de contacto"
+            disabled={isSubmitting}
           >
             <span style={{ fontFamily: "var(--font-syne)" }}>
-              Enviar Mensaje
+              {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
             </span>
           </MagneticButton>
         </form>
