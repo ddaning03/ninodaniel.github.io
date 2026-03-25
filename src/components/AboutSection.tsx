@@ -59,7 +59,7 @@ export default function AboutSection() {
                   No soy una agencia multinacional con procesos lentos. Soy un estratega visual independiente que vive y trabaja en <span className="text-zinc-900 font-bold">CABA</span>, enfocado en que los negocios de mi barrio se vean y vendan como marcas globales.
                 </p>
                 <p>
-                  Tengo +3 años optimizando infraestructuras visuales. Mi enfoque es simple: eliminar la fricción entre tu cliente y tu caja registradora usando <span className="text-zinc-900 font-semibold italic">tecnología de alto rendimiento (Next.js)</span> y diseño editorial de primer nivel.
+                  Tengo +3 años optimizando infraestructuras visuales. Mi enfoque es simple: eliminar la fricción entre tu cliente y tu caja registradora usando <span className="text-zinc-900 font-semibold italic">tecnología de alto rendimiento</span> y diseño editorial de primer nivel.
                 </p>
               </div>
             </ScrollReveal>
