@@ -14,18 +14,20 @@ export default function AboutSection() {
           
           {/* Visual: Editorial Portrait Placeholder */}
           <ScrollReveal direction="left">
-            <div className="relative aspect-[3/4] bg-zinc-100 group overflow-hidden border border-zinc-900/5">
-              {/* Placeholder for professional photo */}
-              <div className="absolute inset-0 flex items-center justify-center bg-zinc-200">
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-400">
-                  Tu Foto Aquí
-                </span>
-              </div>
+            <div className="relative aspect-[3/4] bg-zinc-100 group overflow-hidden border border-zinc-900/5 shadow-2xl">
+              <Image
+                src="/about-me.png"
+                alt="Daniel Niño trabajando en su estudio"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
               <div className="absolute inset-x-8 bottom-8 z-10">
-                <p className="text-zinc-900 font-bold uppercase tracking-widest text-[10px] mb-2" style={{ fontFamily: "var(--font-syne)" }}>
+                <p className="text-white font-bold uppercase tracking-widest text-[10px] mb-2 drop-shadow-md" style={{ fontFamily: "var(--font-syne)" }}>
                   Buenos Aires, Argentina
                 </p>
-                <div className="h-[1px] w-full bg-zinc-900/20" />
+                <div className="h-[1px] w-full bg-white/30" />
               </div>
             </div>
           </ScrollReveal>
