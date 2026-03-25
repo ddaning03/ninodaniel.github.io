@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#474747",
+                        "surface": "#fcf9f2",
+                        "on-primary-fixed": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "on-tertiary-container": "#ffffff",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "surface-variant": "#e5e2db",
+                        "surface-container-high": "#ebe8e1",
+                        "inverse-on-surface": "#f3f0e9",
+                        "on-secondary-fixed-variant": "#3b3b3b",
+                        "secondary-container": "#d4d4d4",
+                        "error": "#ba1a1a",
+                        "tertiary": "#3b3b3b",
+                        "primary": "#000000",
+                        "on-background": "#1c1c18",
+                        "surface-container-low": "#f6f3ec",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1c18",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f1eee7",
+                        "tertiary-container": "#747474",
+                        "tertiary-fixed": "#5e5e5e",
+                        "inverse-surface": "#31312c",
+                        "inverse-primary": "#ffb4a8",
+                        "on-primary-fixed-variant": "#ffdad4",
+                        "on-primary-container": "#ffffff",
+                        "on-primary": "#ffdad4",
+                        "primary-container": "#7e0100",
+                        "surface-container-highest": "#e5e2db",
+                        "on-tertiary-fixed": "#ffffff",
+                        "surface-tint": "#c00100",
+                        "surface-bright": "#fcf9f2",
+                        "on-tertiary-fixed-variant": "#e2e2e2",
+                        "on-secondary-container": "#1b1b1b",
+                        "surface-dim": "#dcdad3",
+                        "secondary-fixed-dim": "#ababab",
+                        "on-tertiary": "#e2e2e2",
+                        "on-error-container": "#410002",
+                        "primary-fixed": "#c00100",
+                        "outline": "#777777",
+                        "primary-fixed-dim": "#930100",
+                        "outline-variant": "#c6c6c6",
+                        "background": "#fcf9f2",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#c6c6c6",
+                        "tertiary-fixed-dim": "#474747"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf9f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+    </style>
+</head>
+<body class="bg-surface text-primary font-body antialiased selection:bg-primary-fixed selection:text-white">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f2]/80 dark:bg-stone-950/80 backdrop-blur-xl flex justify-between items-center px-8 py-6">
+<div class="text-xl font-medium tracking-tighter font-headline dark:text-white">NOCTURNE</div>
+<div class="hidden md:flex gap-12">
+<a class="text-[0.6875rem] font-bold tracking-[0.1em] uppercase font-label text-[#c00100] transition-colors duration-300" href="#">THE EXPERIENCE</a>
+<a class="text-[0.6875rem] font-bold tracking-[0.1em] uppercase font-label text-[#5e5e5e] hover:text-[#c00100] transition-colors duration-300" href="#">MENU</a>
+<a class="text-[0.6875rem] font-bold tracking-[0.1em] uppercase font-label text-[#5e5e5e] hover:text-[#c00100] transition-colors duration-300" href="#">GALLERY</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[0.6875rem] font-bold tracking-[0.1em] uppercase font-label text-primary">MENU</button>
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+</nav>
+<!-- Hero Section: Split Layout -->
+<main class="min-h-screen flex flex-col md:flex-row pt-24">
+<!-- Left Side: Typography & CTA -->
+<section class="w-full md:w-1/2 flex flex-col justify-between p-8 md:p-20 relative overflow-hidden bg-surface">
+<div class="mt-12">
+<p class="text-[0.6875rem] font-bold tracking-[0.2em] uppercase mb-4 text-secondary">EST. MMXXIV</p>
+<div class="flex">
+<!-- Vertical Title Anchor -->
+<h1 class="font-headline text-[8rem] md:text-[12rem] leading-none tracking-tighter vertical-text text-primary select-none opacity-90">
+                        NOCTURNE.
+                    </h1>
+<div class="flex flex-col justify-end pb-8 ml-8">
+<p class="font-headline italic text-2xl md:text-3xl max-w-xs mb-12 leading-relaxed">
+                            "The Silent Authority in contemporary gastronomy."
+                        </p>
+<!-- Primary CTA -->
+<button class="w-fit px-10 py-5 border-[1.5px] border-primary-fixed text-primary text-[0.6875rem] font-bold tracking-widest uppercase hover:bg-primary-fixed hover:text-white transition-all duration-500 group">
+                            RESERVE TABLE
+                        </button>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-20 flex flex-col gap-2">
+<span class="text-[0.6875rem] font-bold tracking-widest text-secondary">01 / 04</span>
+<div class="w-32 h-[1px] bg-outline-variant/30 relative">
+<div class="absolute left-0 top-0 h-full w-1/4 bg-primary-fixed"></div>
+</div>
+</div>
+</section>
+<!-- Right Side: Immersive Imagery -->
+<section class="w-full md:w-1/2 h-[716px] md:h-screen bg-surface-container-highest relative group overflow-hidden">
+<img alt="Minimalist plated dish" class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1] scale-105 group-hover:scale-100 transition-transform duration-[2000ms] ease-out" data-alt="Close-up of a single minimalist gourmet dish on a dark textured ceramic plate, dramatic side lighting, deep shadows, fine dining aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoR7vwFCJQWpdnDbRgcPkShaVDeGOANg_O1lLvaTnXFrr6uawv87E52a6spgPx7qiKsqd2Q3Qt9Pvdxe824lIvRawZsaqAJK6gUgqMVfdWhur9a3mytastit5IBkGch4jMTPxm6-e99NlAU4KHY8i3hNXXsb7P_Q1g5ayfUSDtcbx8o4E6NmEyClUi4ig_htBdUfXoXcylAPmMTeGk5fASCKSecI-0Zaedfd09h9FL6Gaa-pPZHQC8kweqob0FOmAYJIzzK0eDbEnq"/>
+<!-- Overlay Metadata -->
+<div class="absolute bottom-12 right-12 text-white mix-blend-difference text-right">
+<p class="text-[0.6875rem] font-bold tracking-widest uppercase">SYMPHONY NO. 5</p>
+<p class="font-headline italic text-xl">Black Truffle &amp; Bone Marrow</p>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-12 left-12 flex flex-col items-center gap-4">
+<div class="w-[1px] h-24 bg-white/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-white animate-bounce"></div>
+</div>
+<span class="text-[0.6875rem] font-bold tracking-widest uppercase text-white [writing-mode:vertical-lr]">SCROLL</span>
+</div>
+</section>
+</main>
+<!-- Secondary Content: Manifesto -->
+<section class="bg-surface-container-low py-32 px-8 md:px-20">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-4">
+<h2 class="text-[0.6875rem] font-bold tracking-[0.3em] uppercase text-primary-fixed mb-8">THE PHILOSOPHY</h2>
+<h3 class="font-headline text-5xl md:text-6xl leading-[1.1] text-primary">
+                    Where silence <br/>meets <span class="italic">substance</span>.
+                </h3>
+</div>
+<div class="md:col-span-7 md:col-start-6">
+<p class="font-body text-lg md:text-xl text-secondary leading-relaxed mb-8">
+                    Nocturne is not merely a restaurant; it is an editorial exploration of taste. We strip away the unnecessary noise of modern dining to focus on the raw narrative of ingredients. Each seating is a private monograph, a study in texture, shadow, and silence.
+                </p>
+<a class="inline-block text-[0.6875rem] font-bold tracking-widest uppercase border-b border-primary pb-2 hover:text-primary-fixed hover:border-primary-fixed transition-colors duration-300" href="#">READ THE EDITORIAL</a>
+</div>
+</div>
+</section>
+<!-- Grid Layout: The Gallery -->
+<section class="bg-surface py-20 px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-2 h-[600px] bg-surface-container">
+<img alt="Interior" class="w-full h-full object-cover" data-alt="High-end minimalist restaurant interior, concrete walls, dark wood tables, single pinpoint spotlight on a table, architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxdYSTtuL2R0cHBLws-NTKWs8_L-aakh2rUUQcRPkL0ESufDQAB5LLGuImEE-FgB8BCuTrVYEI9m9WRyrLUsQh7d7kQUeSaKZUHZc8sCKZUabjRuAr38N6S9k1GkyRRMCihHfj2NLWFDYb1dTxak6xJVQeLFz9cVgB1lK5dVIoeo2F89pFupcYNDLm0UZkxm8CKl3zCuTpICUgpDafvvK-jlcRnGPZLN2ZvkkN_VP5w6-V2tfqsg6izlp_-zQEx-NFO6yxOoAI6J9g"/>
+</div>
+<div class="h-[600px] bg-surface-container-highest flex flex-col p-12 justify-center">
+<span class="material-symbols-outlined text-4xl mb-6 text-primary-fixed" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="font-headline text-3xl mb-4">The Atmosphere</h4>
+<p class="text-secondary text-sm leading-relaxed">A sanctuary of brutalist elegance and soft acoustics. Designed for intimacy and focus.</p>
+</div>
+<div class="h-[600px] bg-surface-container relative">
+<img alt="Detail" class="w-full h-full object-cover" data-alt="Macro detail of a crystal wine glass with a single drop of dark red wine, white tablecloth background, sharp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw_S3JWlVhsCJbr4ix0chPbQMLGrEyKbMM8A5FIlD3869fRCsSQJpEAbzoAUsQWKXGCD1mZ8zqUFN1wFQ9HBl25cspQCZ0oORK7NFjJOpESE5S7_3UF7BhX-4WSpvv7gZESgqS5fhIHkgk-NLHZKCHsh3pzUqB_s0Aiy0yqSk7_HjiqmgyVjKnr2kosOCfjIfteBoOspeV_YURNoU5LvN0lRuNDJcz_H81M8Kl2g4_UwXDfAL2zO5OA4Z-z_QNR9CaS1VwluykLfrI"/>
+<div class="absolute inset-0 bg-primary/10 hover:bg-transparent transition-colors duration-500"></div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface border-t border-stone-200/10 py-24 flex flex-col items-center gap-12">
+<div class="font-headline text-4xl tracking-tighter">NOCTURNE</div>
+<div class="flex gap-12">
+<a class="text-[10px] tracking-[0.15em] font-medium uppercase font-label text-[#5e5e5e] hover:text-[#c00100] transition-colors" href="#">PRIVACY</a>
+<a class="text-[10px] tracking-[0.15em] font-medium uppercase font-label text-[#5e5e5e] hover:text-[#c00100] transition-colors" href="#">PRESS</a>
+<a class="text-[10px] tracking-[0.15em] font-medium uppercase font-label text-[#5e5e5e] hover:text-[#c00100] transition-colors" href="#">LEGAL</a>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="flex gap-6 mb-4">
+<span class="material-symbols-outlined text-secondary hover:text-primary transition-colors cursor-pointer" data-icon="photo_camera">photo_camera</span>
+<span class="material-symbols-outlined text-secondary hover:text-primary transition-colors cursor-pointer" data-icon="mail">mail</span>
+</div>
+<p class="text-[10px] tracking-[0.15em] font-medium uppercase font-label text-[#5e5e5e]">
+                © MMXXIV NOCTURNE EDITORIAL. ALL RIGHTS RESERVED.
+            </p>
+</div>
+</footer>
+<!-- Side Navigation Overlay (Controlled via JS in real apps, visible here for structure) -->
+<div class="hidden h-full w-80 fixed right-0 top-0 bg-[#f6f3ec] dark:bg-stone-900 border-l border-stone-200/20 z-[60] flex flex-col p-12 justify-between shadow-2xl">
+<div>
+<div class="font-headline italic text-3xl mb-8">NOCTURNE</div>
+<div class="flex flex-col gap-8">
+<a class="text-[0.6875rem] font-bold tracking-widest font-label uppercase text-[#c00100] border-b border-[#c00100] pb-1 w-fit" href="#">THE EXPERIENCE</a>
+<a class="text-[0.6875rem] font-bold tracking-widest font-label uppercase text-[#5e5e5e] hover:text-black hover:tracking-[0.2em] transition-all duration-500" href="#">MENU</a>
+<a class="text-[0.6875rem] font-bold tracking-widest font-label uppercase text-[#5e5e5e] hover:text-black hover:tracking-[0.2em] transition-all duration-500" href="#">GALLERY</a>
+<a class="text-[0.6875rem] font-bold tracking-widest font-label uppercase text-[#5e5e5e] hover:text-black hover:tracking-[0.2em] transition-all duration-500" href="#">RESERVATIONS</a>
+</div>
+</div>
+<div class="flex flex-col gap-12">
+<button class="w-full py-4 border border-primary text-[0.6875rem] font-bold tracking-widest uppercase hover:bg-primary hover:text-white transition-colors">
+                BOOK A TABLE
+            </button>
+<div class="flex justify-between">
+<span class="text-[10px] font-bold tracking-widest text-secondary hover:text-black cursor-pointer uppercase">INSTAGRAM</span>
+<span class="text-[10px] font-bold tracking-widest text-secondary hover:text-black cursor-pointer uppercase">CONTACT</span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYNAPSE // ENGINE - AI Video Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        .glass-panel { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .scanner-line {
+            height: 1px;
+            width: 100%;
+            background: #ffb3b1;
+            opacity: 0.05;
+            position: absolute;
+            top: 0;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        .noise-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3F%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#c6c6cf",
+              "surface-container-lowest": "#0e0e0e",
+              "tertiary-fixed": "#8cf4e8",
+              "tertiary-fixed-dim": "#6fd8cc",
+              "on-primary-fixed": "#410007",
+              "inverse-surface": "#e5e2e1",
+              "surface-variant": "#353534",
+              "tertiary-container": "#2fa096",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-fixed": "#00201d",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              "surface-tint": "#ffb3b1",
+              "on-error-container": "#ffdad6",
+              "surface-bright": "#3a3939",
+              "inverse-primary": "#bb152c",
+              "surface-container-highest": "#353534",
+              "on-tertiary-container": "#00302c",
+              "secondary-fixed": "#e2e1eb",
+              "outline-variant": "#5b403f",
+              "on-surface-variant": "#e4bebc",
+              "on-background": "#e5e2e1",
+              "on-secondary-fixed-variant": "#45464e",
+              "on-primary-container": "#5b000e",
+              "on-secondary": "#2f3037",
+              "outline": "#ab8987",
+              "error": "#ffb4ab",
+              "primary-container": "#ff535b",
+              "surface-container-low": "#1c1b1b",
+              "on-secondary-fixed": "#1a1b22",
+              "on-tertiary-fixed-variant": "#00504a",
+              "on-primary-fixed-variant": "#92001c",
+              "secondary-fixed-dim": "#c6c6cf",
+              "surface-dim": "#131313",
+              "on-tertiary": "#003733",
+              "on-primary": "#680011",
+              "primary-fixed-dim": "#ffb3b1",
+              "on-secondary-container": "#b4b4bd",
+              "secondary-container": "#45464e",
+              "background": "#131313",
+              "surface": "#131313",
+              "surface-container": "#201f1f",
+              "primary-fixed": "#ffdad8",
+              "on-surface": "#e5e2e1",
+              "primary": "#ffb3b1",
+              "surface-container-high": "#2a2a2a",
+              "tertiary": "#6fd8cc"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Space Grotesk"],
+              "label": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary selection:text-on-primary overflow-hidden h-screen flex flex-col">
+<!-- TOP APP BAR -->
+<header class="bg-[#131313] dark:bg-[#0e0e0e] flex justify-between items-center w-full px-6 py-4 h-16 docked full-width top-0 border-none z-50">
+<div class="text-xl font-black tracking-[-0.04em] text-[#ffb3b1] uppercase">
+            SYNAPSE // ENGINE
+        </div>
+<div class="hidden md:flex gap-8 font-['JetBrains_Mono'] uppercase tracking-tighter text-[0.6875rem]">
+<a class="text-[#ffb3b1] border-b-2 border-[#ffb3b1] hover:text-[#ffb3b1] hover:bg-[#3a3939] transition-all duration-100 Active: skew-x-2 transition-transform" href="#">NÚCLEO</a>
+<a class="text-[#3a3939] hover:text-[#ffb3b1] hover:bg-[#3a3939] transition-all duration-100 Active: skew-x-2 transition-transform" href="#">TERMINAL</a>
+<a class="text-[#3a3939] hover:text-[#ffb3b1] hover:bg-[#3a3939] transition-all duration-100 Active: skew-x-2 transition-transform" href="#">MÉTRICAS</a>
+<a class="text-[#3a3939] hover:text-[#ffb3b1] hover:bg-[#3a3939] transition-all duration-100 Active: skew-x-2 transition-transform" href="#">VISIÓN</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb3b1] text-lg">terminal</span>
+<span class="material-symbols-outlined text-[#3a3939] text-lg">sensors</span>
+<span class="material-symbols-outlined text-[#3a3939] text-lg">settings_input_component</span>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<div class="scanner-line"></div>
+<!-- SIDE NAV -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#0e0e0e] dark:bg-[#0e0e0e] docked left-0 h-screen w-64 border-none pt-20 hidden lg:flex">
+<div class="px-6 mb-8">
+<div class="font-['JetBrains_Mono'] text-[0.75rem] uppercase text-on-surface-variant mb-1">SYNAPSE_OS</div>
+<div class="text-[0.6rem] text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                    STATUS: ACTIVE
+                </div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-6 py-4 text-[#ffb3b1] bg-[#201f1f] border-l-4 border-[#ffb3b1] font-['JetBrains_Mono'] text-[0.75rem] uppercase" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">memory</span>
+                    NÚCLEO
+                </a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#3a3939] hover:bg-[#3a3939] hover:text-[#ffb3b1] border-l-4 border-transparent hover:border-l-2 hover:border-[#ffb3b1] font-['JetBrains_Mono'] text-[0.75rem] uppercase" href="#">
+<span class="material-symbols-outlined">code</span>
+                    TERMINAL
+                </a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#3a3939] hover:bg-[#3a3939] hover:text-[#ffb3b1] border-l-4 border-transparent hover:border-l-2 hover:border-[#ffb3b1] font-['JetBrains_Mono'] text-[0.75rem] uppercase" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    MÉTRICAS
+                </a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#3a3939] hover:bg-[#3a3939] hover:text-[#ffb3b1] border-l-4 border-transparent hover:border-l-2 hover:border-[#ffb3b1] font-['JetBrains_Mono'] text-[0.75rem] uppercase" href="#">
+<span class="material-symbols-outlined">visibility</span>
+                    VISIÓN
+                </a>
+</nav>
+<div class="p-6 space-y-4">
+<button class="w-full py-3 bg-[#201f1f] text-primary font-['JetBrains_Mono'] text-[0.7rem] border border-primary/20 hover:bg-primary hover:text-on-primary transition-all">
+                    ACCESO AL NÚCLEO
+                </button>
+<div class="space-y-2 border-t border-outline-variant/20 pt-4">
+<a class="flex items-center gap-2 text-[#3a3939] hover:text-primary font-['JetBrains_Mono'] text-[0.65rem] uppercase" href="#">
+<span class="material-symbols-outlined text-sm">help_center</span> SOPORTE
+                    </a>
+<a class="flex items-center gap-2 text-[#3a3939] hover:text-primary font-['JetBrains_Mono'] text-[0.65rem] uppercase" href="#">
+<span class="material-symbols-outlined text-sm">power_settings_new</span> LOGOUT
+                    </a>
+</div>
+</div>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="flex-1 lg:ml-64 p-4 md:p-8 overflow-y-auto bg-surface-dim relative">
+<div class="noise-bg absolute inset-0 pointer-events-none"></div>
+<!-- BENTO GRID -->
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-4 h-full max-w-[1600px] mx-auto">
+<!-- 1. CORE ENGINE -->
+<section class="md:col-span-3 md:row-span-2 bg-surface-container relative overflow-hidden group border border-transparent hover:border-primary/30 transition-all duration-300 p-8 flex flex-col justify-end">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container to-surface-bright/20 opacity-50"></div>
+<div class="relative z-10">
+<div class="font-label text-primary text-[0.65rem] tracking-[0.2em] mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary"></span> [ SYNAPSE_V.01 ]
+                        </div>
+<h1 class="text-4xl md:text-7xl font-black font-headline uppercase leading-[0.9] tracking-[-0.04em] mb-6">
+                            Genera video cinematográfico desde texto puro. <span class="text-primary-container">Sin renderizado.</span>
+</h1>
+<div class="font-label text-on-surface-variant text-sm border-l border-primary/40 pl-4 py-1">
+                            &gt; PROMPT: "Cámara lenta, grano de película 35mm, ciberpunk noir en Neo-Madrid, lluvia de neón."_
+                        </div>
+</div>
+</section>
+<!-- 2. THE WAITLIST ACCESS (Pinned Right) -->
+<section class="md:col-span-1 md:row-span-4 bg-surface-container-high p-8 flex flex-col border border-transparent hover:border-primary/30 transition-all duration-300 relative group">
+<div class="absolute top-0 right-0 p-4 font-label text-[0.6rem] text-primary/40">ID_7734-X</div>
+<div class="mb-12">
+<h2 class="font-headline font-black text-3xl uppercase tracking-tighter mb-2">ACCESO AL NÚCLEO</h2>
+<div class="inline-block bg-primary/10 border border-primary/20 px-3 py-1 text-primary font-label text-[0.65rem]">
+                            FASE 01: BETA PRIVADA
+                        </div>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-8">
+<div class="space-y-4">
+<label class="font-label text-[0.7rem] text-on-surface-variant uppercase">Credenciales del Terminal</label>
+<div class="relative group/input">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface font-label text-sm p-0 pb-2 transition-colors placeholder:text-surface-bright uppercase" placeholder="USUARIO@NETWORK.COM" type="email"/>
+<div class="absolute right-0 bottom-3 w-2 h-5 bg-primary cursor-blink"></div>
+</div>
+</div>
+<div class="space-y-4">
+<button class="group relative w-full bg-primary text-on-primary font-black py-4 uppercase tracking-widest text-sm hover:bg-primary-container transition-all Active:scale-[0.98]">
+<span class="relative z-10">SOLICITAR ACCESO</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<p class="text-center font-label text-[0.6rem] text-surface-bright uppercase">Verificando credenciales en tiempo real...</p>
+</div>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant/20">
+<div class="flex justify-between items-center text-[0.65rem] font-label text-on-surface-variant">
+<span>PROTOCOLO</span>
+<span>AES-256 BIT</span>
+</div>
+</div>
+</section>
+<!-- 3. LIVE TERMINAL -->
+<section class="md:col-span-2 md:row-span-1 bg-surface-container-lowest p-6 border border-transparent hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant/30 pb-2">
+<div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+<span class="font-label text-[0.6rem] text-on-surface-variant ml-2 uppercase">Kernel_logs_stream</span>
+</div>
+<div class="font-label text-[0.7rem] text-primary/80 space-y-1">
+<p>[ <span class="text-tertiary">PROCESSING PROMPT...</span> ] VECTORIZING TEXT SEMANTICS</p>
+<p>[ <span class="text-tertiary">FRAME 001 GEN...</span> ] LATENT SPACE INJECTION COMPLETE</p>
+<p>[ <span class="text-tertiary">UPTIME: 99.9%</span> ] SYSTEM STABILITY NOMINAL</p>
+<p class="animate-pulse">&gt; WAITING FOR NEW INPUT_</p>
+</div>
+</section>
+<!-- 4. METRIC BOX -->
+<section class="md:col-span-1 md:row-span-1 bg-surface-container p-6 border border-transparent hover:border-primary/30 transition-all duration-300 flex flex-col justify-center items-center text-center">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span>
+<span class="font-label text-[0.65rem] text-primary uppercase">LIVE</span>
+</div>
+<div class="text-5xl font-black font-headline tracking-tighter mb-1">004K</div>
+<div class="font-label text-[0.6rem] text-on-surface-variant uppercase tracking-widest">USUARIOS EN ESPERA</div>
+</section>
+<!-- 5. TECH STACK -->
+<section class="md:col-span-1 md:row-span-1 bg-surface-container p-6 border border-transparent hover:border-primary/30 transition-all duration-300 flex flex-col justify-between">
+<div class="font-label text-[0.65rem] text-on-surface-variant uppercase mb-4">Arquitectura</div>
+<div class="space-y-2">
+<div class="text-[0.65rem] font-label text-primary bg-primary/5 p-2 border border-primary/10">[ NEURAL_V3 ]</div>
+<div class="text-[0.65rem] font-label text-tertiary bg-tertiary/5 p-2 border border-tertiary/10">[ LOW_LATENCY ]</div>
+<div class="text-[0.65rem] font-label text-on-surface bg-on-surface/5 p-2 border border-on-surface/10">[ GPU_ACCEL ]</div>
+</div>
+</section>
+<!-- 6. VISION PREVIEW -->
+<section class="md:col-span-2 md:row-span-1 relative bg-surface-container overflow-hidden group border border-transparent hover:border-primary/30 transition-all duration-300">
+<img class="w-full h-full object-cover grayscale brightness-50 contrast-125 group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic close-up of dark futuristic circuit boards with glowing red fiber optics and grainy film texture, dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGGMtNamzJs2v5G-0dh1i9UllEPn_Pzhf9PVwZ-n1ZCv0e3Tu0D9mTJazs06oxwZh2rhqYn5gSk4slGhPQTxAU3ABq8MKoRluk5rSsrhVxJfzHKNVyQVC3dAybnDnh6WLcKLy8xz_XmnruAbEnpnyT4iYZfSdvplOyNdWUVjHk_ipJiS1ydL5LKZjPdYMCQCgSpxQPdf2mqSx6-6rWfBa1-5rOXQCWdtg-AcueBGAntEX2i1vWoUzMyPZyv52AIcri2Q8hTktXrA4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-6">
+<div class="font-label text-[0.65rem] text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">visibility</span> VISIÓN_01
+                        </div>
+<p class="font-headline font-bold text-xl uppercase tracking-tight">Calidad de estudio. Ejecución instantánea.</p>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BOTTOM NAV (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-highest flex justify-around items-center h-16 z-50">
+<button class="flex flex-col items-center justify-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">memory</span>
+<span class="font-label text-[0.6rem]">NÚCLEO</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-surface-bright">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label text-[0.6rem]">TERMINAL</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-surface-bright">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label text-[0.6rem]">DATOS</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-surface-bright">
+<span class="material-symbols-outlined">login</span>
+<span class="font-label text-[0.6rem]">ACCESO</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-premium-cream: #F4F1EA;
+  --color-vermilion: #E63946;
+  --color-dark-zinc: #09090b;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-syne);
+}
+
+/* ─── Base ─── */
+body {
+  background-color: var(--color-premium-cream);
+  color: #18181b;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Grid overlay lines ─── */
+.grid-line-v {
+  width: 1px;
+  background: rgba(24, 24, 27, 0.1);
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+/* ─── Scrollbar suppression for drawers ─── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Drag indicator for mobile bottom-sheet ─── */
+.drag-indicator {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(150, 150, 150, 0.5);
+  margin: 0 auto;
+}
