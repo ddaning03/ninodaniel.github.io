@@ -37,9 +37,13 @@ function TypewriterHeadline() {
     <h1
       className={`${inter.className} text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-[1.05] tracking-tighter mb-6`}
     >
-      {displayedText1}
-      <span className="text-[#E63946]">{displayedText2}</span>
-      <span className="animate-pulse opacity-50">_</span>
+      {/* Texto completo para Google y lectores de pantalla (el efecto máquina de escribir va oculto para ellos) */}
+      <span className="sr-only">{text1 + text2}</span>
+      <span aria-hidden="true">
+        {displayedText1}
+        <span className="text-[#E63946]">{displayedText2}</span>
+        <span className="animate-pulse opacity-50">_</span>
+      </span>
     </h1>
   );
 }
