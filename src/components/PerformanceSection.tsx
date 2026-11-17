@@ -60,15 +60,32 @@ function BackgroundChart() {
   );
 }
 
-/* ─── Dashboard data cards ─── */
-const metrics = [
-  { label: "Conversión", value: "4.8%", delta: "+127%", up: true },
-  { label: "CPA Promedio", value: "$3.20", delta: "-42%", up: false },
-  { label: "ROAS", value: "5.2x", delta: "+89%", up: true },
-  { label: "CTR", value: "3.1%", delta: "+68%", up: true },
+/* ─── Qué reviso en tu página ─── */
+const checks = [
+  {
+    label: "Velocidad en celular",
+    value: "01",
+    desc: "Que cargue rápido con datos móviles. Si tarda, la gente se va antes de ver lo que vendés.",
+  },
+  {
+    label: "Conversión",
+    value: "02",
+    desc: "Que escribirte por WhatsApp, llamarte o pedir un turno sea fácil y esté siempre a la vista.",
+  },
+  {
+    label: "Presencia en Google",
+    value: "03",
+    desc: "Que aparezcas cuando alguien busca lo que hacés en tu zona, con tu ficha de Google al día.",
+  },
+  {
+    label: "Seguridad",
+    value: "04",
+    desc: "Que no queden datos de clientes ni claves a la vista. Clave si tu página la armó una IA.",
+  },
 ];
 
-function MetricCard({ label, value, delta, up, delay }: { label: string; value: string; delta: string; up: boolean; delay: number }) {
+function MetricCard({ label, value, desc, delay }: { label: string; value: string; desc: string; delay: number }) {
+  const up = true; // mini gráfico decorativo
   return (
     <ScrollReveal delay={delay}>
       <div className="bg-white/[0.04] border border-white/[0.08] p-6 space-y-3 hover:border-vermilion/30 transition-colors duration-500 group">
@@ -84,29 +101,10 @@ function MetricCard({ label, value, delta, up, delay }: { label: string; value: 
         >
           {value}
         </p>
-        <div className="flex items-center gap-1.5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={up ? "#22c55e" : "#E63946"}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={up ? "" : "rotate-180"}
-          >
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
-          <span className={`text-sm font-medium ${up ? "text-green-400" : "text-vermilion"}`}>
-            {delta}
-          </span>
-          <span className="text-xs text-white/30">vs periodo anterior</span>
-        </div>
+        <p className="text-sm text-white/60 leading-relaxed">{desc}</p>
 
-        {/* Mini sparkline */}
-        <svg className="w-full h-8 mt-2 opacity-30 group-hover:opacity-60 transition-opacity" viewBox="0 0 100 30" fill="none">
+        {/* Mini sparkline (decorativo) */}
+        <svg aria-hidden="true" className="w-full h-8 mt-2 opacity-30 group-hover:opacity-60 transition-opacity" viewBox="0 0 100 30" fill="none">
           {up ? (
             <polyline
               points="0,28 15,24 30,26 45,20 55,22 70,14 85,10 100,4"
@@ -134,7 +132,7 @@ export default function PerformanceSection({
   return (
     <section
       className="relative min-h-screen bg-dark-zinc text-white py-24 lg:py-32 flex flex-col justify-center border-b border-white/10 overflow-hidden"
-      aria-label="Sección de rendimiento y resultados"
+      aria-label="Qué reviso en tu página"
     >
       <BackgroundChart />
 
@@ -147,7 +145,7 @@ export default function PerformanceSection({
                 className="inline-block px-3 py-1 border border-vermilion text-vermilion text-[10px] uppercase tracking-[0.3em] font-bold"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
-                Resultados
+                Qué reviso
               </div>
             </ScrollReveal>
 
@@ -156,19 +154,16 @@ export default function PerformanceSection({
                 className="text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
-                Más allá de los <br /> píxeles:{" "}
-                <span className="text-vermilion">Rendimiento.</span>
+                Qué reviso en <br /> tu{" "}
+                <span className="text-vermilion">página.</span>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
               <div className="space-y-6">
                 <p className="text-xl lg:text-2xl opacity-60 max-w-lg leading-relaxed">
-                  Tus anuncios no necesitan ser arte, necesitan detener el
-                  scroll y reducir tu CPA.
-                </p>
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 border-t border-white/5 pt-4 max-w-sm">
-                  Nota: Las métricas mostradas son benchmarks de referencia basados en optimizaciones reales para negocios locales. 
+                  Antes de tocar nada, miro tu página como la ve tu cliente
+                  desde el celular. Estos son los 4 puntos que reviso siempre.
                 </p>
               </div>
             </ScrollReveal>
@@ -186,9 +181,9 @@ export default function PerformanceSection({
             </ScrollReveal>
           </div>
 
-          {/* Right: Dashboard metrics */}
+          {/* Right: Qué reviso */}
           <div className="grid grid-cols-2 gap-4">
-            {metrics.map((m, i) => (
+            {checks.map((m, i) => (
               <MetricCard key={m.label} {...m} delay={0.15 + i * 0.1} />
             ))}
           </div>
