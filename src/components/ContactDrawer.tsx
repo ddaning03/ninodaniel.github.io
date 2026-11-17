@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
@@ -16,13 +16,31 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     name: "",
     email: "",
     message: "",
+    _gotcha: "", // campo trampa anti-spam (Formspree descarta envíos que lo completen)
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /* Cerrar con Escape */
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen, onClose]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Si un bot completó el campo trampa, simulamos éxito sin enviar nada.
+    if (formData._gotcha) {
+      setSubmitted(true);
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -38,12 +56,12 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", _gotcha: "" });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
         setError("Hubo un error al enviar el mensaje. Prueba de nuevo.");
       }
-    } catch (err) {
+    } catch {
       setError("Error de conexión. Revisa tu internet.");
     } finally {
       setIsSubmitting(false);
@@ -123,6 +141,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
 /* ─── Sub-components ─── */
 
+type ContactFormData = { name: string; email: string; message: string; _gotcha: string };
+
 function DrawerHeader({ onClose, mobile }: { onClose: () => void; mobile?: boolean }) {
   return (
     <div className={`${mobile ? "px-6 pb-4" : "p-8"} border-b border-white/10 flex justify-between items-center`}>
@@ -154,8 +174,8 @@ function ContactContent({
   isSubmitting,
   error,
 }: {
-  formData: { name: string; email: string; message: string };
-  setFormData: React.Dispatch<React.SetStateAction<{ name: string; email: string; message: string }>>;
+  formData: ContactFormData;
+  setFormData: React.Dispatch<React.SetStateAction<ContactFormData>>;
   submitted: boolean;
   onSubmit: (e: React.FormEvent) => void;
   isSubmitting: boolean;
@@ -261,6 +281,8 @@ function ContactContent({
               type="text"
               required
               name="name"
+              maxLength={100}
+              autoComplete="name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors"
@@ -276,6 +298,8 @@ function ContactContent({
               type="email"
               required
               name="email"
+              maxLength={254}
+              autoComplete="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors"
@@ -290,12 +314,28 @@ function ContactContent({
               id="contact-message"
               required
               name="message"
+              maxLength={3000}
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors resize-none"
               placeholder="Cuéntame sobre tu proyecto..."
             />
+          </div>
+
+          {/* Honeypot anti-spam: invisible para personas, los bots lo completan */}
+          <div aria-hidden="true" className="sr-only">
+            <label>
+              No completar este campo
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                value={formData._gotcha}
+                onChange={(e) => setFormData({ ...formData, _gotcha: e.target.value })}
+              />
+            </label>
           </div>
 
           {error && (
