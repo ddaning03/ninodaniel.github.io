@@ -21,7 +21,6 @@ export default function AboutSection() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
               />
               <div className="absolute inset-x-8 bottom-8 z-10">
                 <p className="text-white font-bold uppercase tracking-widest text-[10px] mb-2 drop-shadow-md" style={{ fontFamily: "var(--font-syne)" }}>
@@ -59,7 +58,10 @@ export default function AboutSection() {
                   No soy una agencia multinacional con procesos lentos. Soy un estratega visual independiente que vive y trabaja en <span className="text-zinc-900 font-bold">CABA</span>, enfocado en que los negocios de mi barrio se vean y vendan como marcas globales.
                 </p>
                 <p>
-                  Tengo +3 años optimizando infraestructuras visuales. Mi enfoque es simple: eliminar la fricción entre tu cliente y tu caja registradora usando <span className="text-zinc-900 font-semibold italic">tecnología de alto rendimiento</span> y diseño editorial de primer nivel.
+                  Tengo +3 años haciendo páginas para negocios. Mi enfoque es simple: que a tu cliente le resulte fácil encontrarte, escribirte y comprarte, con <span className="text-zinc-900 font-semibold italic">tecnología rápida</span> y diseño de primer nivel.
+                </p>
+                <p>
+                  Y que tu página sea <span className="text-zinc-900 font-bold">segura</span>: también reviso páginas hechas con IA (Lovable, Bolt, v0) para encontrar y arreglar problemas de seguridad antes de que te cuesten clientes.
                 </p>
               </div>
             </ScrollReveal>
@@ -67,11 +69,11 @@ export default function AboutSection() {
             <ScrollReveal delay={0.5}>
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-900/10">
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Tecnologías</h4>
+                  <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Tecnologías</h3>
                   <p className="text-sm font-bold">Next.js, Framer Motion, Meta Ads</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Alcance</h4>
+                  <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Alcance</h3>
                   <p className="text-sm font-bold">CABA / Remoto Global</p>
                 </div>
               </div>

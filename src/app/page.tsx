@@ -23,9 +23,9 @@ function WebDrawerContent() {
         imageAlt="KENTA – Landing page de cosméticos premium"
         deployUrl="/proyectos/kenta"
         category="Kenta — Cosméticos Premium"
-        tag="Desarrollo Web Integral"
+        tag="Proyecto de concepto • Web"
         description="Landing page de alta conversión para marca de cosméticos. Diseño editorial con grid dinámico, animaciones scroll-triggered y checkout optimizado."
-        techLine="Stack: Next.js + Framer Motion • CR: +4.8% • Tasa de rebote: -34%"
+        techLine="Stack: Next.js + Framer Motion • Métricas simuladas: CR +4.8% • Rebote -34%"
       />
 
       <ProjectCard
@@ -33,7 +33,7 @@ function WebDrawerContent() {
         imageAlt="NOCTURNE. — Gastronomía de Autor"
         deployUrl="/proyectos/nocturne"
         category="Nocturne — Fine Dining"
-        tag="Diseño Editorial • Web"
+        tag="Proyecto de concepto • Diseño Editorial"
         description="Experiencia inmersiva para un restaurante Omakase premium. Diseño bento box oscuro, topografía asimétrica y atmósfera wabi-sabi."
         techLine="Stack: Next.js + CSS Grid + Framer Motion"
       />
@@ -43,7 +43,7 @@ function WebDrawerContent() {
         imageAlt="SYNAPSE — Waitlist Interface"
         deployUrl="/proyectos/synapse"
         category="Synapse — AI Lab"
-        tag="Dashboard • UX Técnico"
+        tag="Proyecto de concepto • UX Técnico"
         description="Interfaz brutalista para motor de video AI. Animación typewriter simula generación de prompts en tiempo real sobre un sistema tipo terminal."
         techLine="Stack: Next.js + Tailwind + Framer Motion"
       />
@@ -80,9 +80,9 @@ function AdsDrawerContent() {
         imageAlt="VOID - Caso de Estudio Marketing Digital"
         deployUrl="/proyectos/void"
         category="VOID — Drop 04"
-        tag="Estrategia de Marketing • Streetwear DTC"
+        tag="Proyecto de concepto • Marketing Streetwear"
         description="Estrategia end-to-end para el lanzamiento de un drop limitado de 100 piezas. Posicionamiento basado en la escasez, identidad brutalista y hype orgánico."
-        techLine="Sold Out: < 7 días • Impresiones: +50k • Conversión: +4.5%"
+        techLine="Métricas simuladas: Sold Out < 7 días • Impresiones +50k • Conversión +4.5%"
       />
 
       <div className="border-t border-white/10 pt-8 mt-12">
@@ -96,7 +96,7 @@ function AdsDrawerContent() {
             className="relative overflow-hidden aspect-square bg-zinc-900 border border-white/5 p-4 flex flex-col justify-end group"
           >
             <Image
-              alt={ad.label}
+              alt={`Ejemplo de creativo para redes: ${ad.label}`}
               src={ad.src}
               fill
               sizes="(max-width: 768px) 50vw, 25vw"

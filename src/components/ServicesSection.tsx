@@ -2,7 +2,21 @@
 
 import ScrollReveal from "./ScrollReveal";
 
-const services = [
+interface Service {
+  tier: string;
+  price: string;
+  /** Unidad que acompaña al precio (por defecto "ARS") */
+  unit?: string;
+  time?: string;
+  ideal: string;
+  features: string[];
+  cta: string;
+  popular?: boolean;
+  /** Mensaje precargado de WhatsApp */
+  waText?: string;
+}
+
+const services: Service[] = [
   {
     tier: "Presencia",
     price: "50.000",
@@ -48,9 +62,87 @@ const services = [
   }
 ];
 
+const extraServices: Service[] = [
+  {
+    tier: "Revisión de seguridad",
+    price: "40.000",
+    ideal: "Para páginas hechas con IA (Lovable, Bolt, v0)",
+    features: [
+      "Chequeo completo de tu página",
+      "Informe claro, en lenguaje simple",
+      "Riesgos encontrados, de más a menos urgente",
+      "Propuesta de arreglo para cada uno"
+    ],
+    cta: "Pedir Revisión",
+    waText: "¡Hola Daniel! Me interesa la revisión de seguridad para mi página. ¿Podemos charlar?"
+  },
+  {
+    tier: "Mantenimiento mensual",
+    price: "30.000",
+    unit: "ARS/mes",
+    ideal: "Para que tu página no se descuide",
+    features: [
+      "Actualizaciones",
+      "Backups",
+      "Monitoreo: que esté online y segura",
+      "Reporte mensual corto"
+    ],
+    cta: "Sumar Mantenimiento",
+    waText: "¡Hola Daniel! Me interesa el mantenimiento mensual para mi página. ¿Podemos charlar?"
+  }
+];
+
+function ServiceCard({ s, delay }: { s: Service; delay: number }) {
+  const waText = s.waText ?? `¡Hola Daniel! Me interesa el plan ${s.tier}. ¿Podemos charlar?`;
+
+  return (
+    <ScrollReveal delay={delay}>
+      <div className={`relative p-8 lg:p-12 border-r border-b border-white/10 flex flex-col h-full group transition-all duration-500 hover:bg-white/5 ${s.popular ? 'bg-white/[0.02]' : ''}`}>
+        {s.popular && (
+          <div className="absolute top-0 left-0 w-full h-1 bg-vermilion" />
+        )}
+
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold uppercase tracking-tight mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.tier}</h3>
+          <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-8" style={{ fontFamily: "var(--font-syne)" }}>{s.ideal}</p>
+
+          <div className="flex items-baseline gap-1">
+            <span className="text-4xl lg:text-5xl font-bold tracking-tighter text-vermilion" style={{ fontFamily: "var(--font-syne)" }}>{`$${s.price}`}</span>{" "}
+            <span className="text-white/40 text-xs font-bold uppercase tracking-widest">{s.unit ?? "ARS"}</span>
+          </div>
+          {s.time && (
+            <p className="text-[10px] text-white/30 uppercase tracking-widest mt-2">{s.time} entrega aprox.</p>
+          )}
+        </div>
+
+        <ul className="space-y-4 mb-12 flex-grow">
+          {s.features.map((f) => (
+            <li key={f} className="flex items-start gap-3 text-sm text-white/60">
+              <svg className="w-4 h-4 text-vermilion mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+              </svg>
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href={`https://wa.me/5491167644591?text=${encodeURIComponent(waText)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`w-full py-4 text-xs font-bold uppercase text-center block tracking-[0.2em] transition-all duration-500 border ${s.popular ? 'bg-vermilion border-vermilion text-white hover:bg-white hover:text-black hover:border-white' : 'border-white/20 hover:bg-white hover:text-black hover:border-white'}`}
+          style={{ fontFamily: "var(--font-syne)" }}
+        >
+          {s.cta}
+        </a>
+      </div>
+    </ScrollReveal>
+  );
+}
+
 export default function ServicesSection() {
   return (
-    <section 
+    <section
       id="servicios"
       className="relative py-24 lg:py-32 bg-dark-zinc text-white border-b border-white/10 overflow-hidden"
     >
@@ -66,52 +158,27 @@ export default function ServicesSection() {
               </h2>
             </div>
             <p className="max-w-xs text-white/40 text-sm leading-relaxed">
-              Precios promocionales por tiempo limitado a cambio de testimonio para portfolio. Válido para negocios locales en Argentina.
+              Precios promocionales en los 3 planes, por tiempo limitado y a cambio de un testimonio para mi portfolio. Válido para negocios locales en Argentina.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-0 border-t border-l border-white/10">
           {services.map((s, i) => (
-            <ScrollReveal key={s.tier} delay={i * 0.1}>
-              <div className={`relative p-8 lg:p-12 border-r border-b border-white/10 flex flex-col h-full group transition-all duration-500 hover:bg-white/5 ${s.popular ? 'bg-white/[0.02]' : ''}`}>
-                {s.popular && (
-                  <div className="absolute top-0 left-0 w-full h-1 bg-vermilion" />
-                )}
-                
-                <div className="mb-12">
-                  <h3 className="text-2xl font-bold uppercase tracking-tight mb-2" style={{ fontFamily: "var(--font-syne)" }}>{s.tier}</h3>
-                  <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-8" style={{ fontFamily: "var(--font-syne)" }}>{s.ideal}</p>
-                  
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl lg:text-5xl font-bold tracking-tighter text-vermilion" style={{ fontFamily: "var(--font-syne)" }}>${s.price}</span>
-                    <span className="text-white/40 text-xs font-bold uppercase tracking-widest">AR$</span>
-                  </div>
-                  <p className="text-[10px] text-white/30 uppercase tracking-widest mt-2">{s.time} entrega aprox.</p>
-                </div>
+            <ServiceCard key={s.tier} s={s} delay={i * 0.1} />
+          ))}
+        </div>
 
-                <ul className="space-y-4 mb-12 flex-grow">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-white/60">
-                      <svg className="w-4 h-4 text-vermilion mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+        {/* ─── Servicios adicionales ─── */}
+        <ScrollReveal>
+          <span className="block mt-20 mb-8 text-vermilion text-[10px] uppercase tracking-[0.4em] font-bold" style={{ fontFamily: "var(--font-syne)" }}>
+            Servicios Adicionales
+          </span>
+        </ScrollReveal>
 
-                <a 
-                  href={`https://wa.me/5491167644591?text=${encodeURIComponent(`¡Hola Daniel! Me interesa el plan ${s.tier}. ¿Podemos charlar?`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-4 text-xs font-bold uppercase text-center block tracking-[0.2em] transition-all duration-500 border ${s.popular ? 'bg-vermilion border-vermilion text-white hover:bg-white hover:text-black hover:border-white' : 'border-white/20 hover:bg-white hover:text-black hover:border-white'}`}
-                  style={{ fontFamily: "var(--font-syne)" }}
-                >
-                  {s.cta}
-                </a>
-              </div>
-            </ScrollReveal>
+        <div className="grid md:grid-cols-2 gap-0 border-t border-l border-white/10">
+          {extraServices.map((s, i) => (
+            <ServiceCard key={s.tier} s={s} delay={i * 0.1} />
           ))}
         </div>
       </div>
