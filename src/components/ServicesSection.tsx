@@ -84,8 +84,8 @@ export default function ServicesSection() {
                   <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-8" style={{ fontFamily: "var(--font-syne)" }}>{s.ideal}</p>
                   
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl lg:text-5xl font-bold tracking-tighter text-vermilion" style={{ fontFamily: "var(--font-syne)" }}>${s.price}</span>
-                    <span className="text-white/40 text-xs font-bold uppercase tracking-widest">AR$</span>
+                    <span className="text-4xl lg:text-5xl font-bold tracking-tighter text-vermilion" style={{ fontFamily: "var(--font-syne)" }}>{`$${s.price}`}</span>{" "}
+                    <span className="text-white/40 text-xs font-bold uppercase tracking-widest">ARS</span>
                   </div>
                   <p className="text-[10px] text-white/30 uppercase tracking-widest mt-2">{s.time} entrega aprox.</p>
                 </div>
