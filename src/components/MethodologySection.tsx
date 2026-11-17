@@ -6,8 +6,8 @@ import MagneticButton from "./MagneticButton";
 const steps = [
   {
     num: "01.",
-    title: "Auditoría de Conversión",
-    desc: "Analizamos cada punto de fricción en tu embudo actual para encontrar fugas de capital.",
+    title: "Auditoría de Ventas y Seguridad",
+    desc: "Miramos tu página como la ve un cliente (dónde se traba, por qué no te escribe) y como la ve alguien con malas intenciones (qué datos quedan expuestos). Así sabemos qué arreglar primero.",
   },
   {
     num: "02.",
