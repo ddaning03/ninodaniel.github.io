@@ -1,14 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { Inter, VT323 } from "next/font/google";
+import { VT323 } from "next/font/google";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 const vt323 = VT323({
   weight: "400",
@@ -45,7 +40,7 @@ function Reveal({
 export default function VoidPage() {
   return (
     <div
-      className={`${inter.variable} ${vt323.variable} bg-[#0A0A0A] text-[#F3F3F3] antialiased min-h-screen selection:bg-[#FF0000] selection:text-white flex overflow-hidden`}
+      className={`${vt323.variable} bg-[#0A0A0A] text-[#F3F3F3] antialiased min-h-screen selection:bg-[#FF0000] selection:text-white flex overflow-hidden`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
       {/* ─── FIXED VERTICAL SIDEBAR ─── */}

@@ -96,7 +96,7 @@ function AdsDrawerContent() {
             className="relative overflow-hidden aspect-square bg-zinc-900 border border-white/5 p-4 flex flex-col justify-end group"
           >
             <Image
-              alt={ad.label}
+              alt={`Ejemplo de creativo para redes: ${ad.label}`}
               src={ad.src}
               fill
               sizes="(max-width: 768px) 50vw, 25vw"

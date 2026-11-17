@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "700"] });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "700", "900"] });
+// Inter ya la carga el layout raíz (clase font-sans); no se vuelve a descargar acá.
 
 const noiseOverlay = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
 
@@ -35,7 +35,7 @@ function TypewriterHeadline() {
 
   return (
     <h1
-      className={`${inter.className} text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-[1.05] tracking-tighter mb-6`}
+      className={`font-sans text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-[1.05] tracking-tighter mb-6`}
     >
       {/* Texto completo para Google y lectores de pantalla (el efecto máquina de escribir va oculto para ellos) */}
       <span className="sr-only">{text1 + text2}</span>
@@ -121,7 +121,7 @@ export default function SynapseWaitlist() {
         {/* 1. THE WAITLIST ACCESS (Moved to Left) */}
         <section className="col-span-1 md:row-span-4 bg-[#080808] border border-zinc-900/50 hover:border-[#E63946]/50 transition-colors duration-500 p-6 sm:p-10 flex flex-col justify-start gap-8 group">
           <div>
-            <h2 className={`${inter.className} font-black text-2xl lg:text-3xl uppercase tracking-tighter text-zinc-200 mb-2`}>
+            <h2 className={`font-sans font-black text-2xl lg:text-3xl uppercase tracking-tighter text-zinc-200 mb-2`}>
               ACCESO AL NÚCLEO
             </h2>
             <div className={`${jetbrains.className} inline-block bg-[#E63946]/10 border border-[#E63946]/20 px-3 py-1 text-[#E63946] text-[10px] tracking-widest mt-2`}>
@@ -150,7 +150,7 @@ export default function SynapseWaitlist() {
             <button 
               type="submit"
               disabled={status !== "idle"}
-              className={`${inter.className} relative w-full bg-[#E63946] text-white font-black py-4 uppercase tracking-[0.2em] text-xs transition-all hover:bg-red-700 active:scale-[0.98] disabled:opacity-80 disabled:cursor-wait overflow-hidden group/btn`}
+              className={`font-sans relative w-full bg-[#E63946] text-white font-black py-4 uppercase tracking-[0.2em] text-xs transition-all hover:bg-red-700 active:scale-[0.98] disabled:opacity-80 disabled:cursor-wait overflow-hidden group/btn`}
             >
               <span className="relative z-10 drop-shadow-md">
                 {status === "idle" ? "SOLICITAR ACCESO" : status === "loading" ? "VERIFICANDO CREDENCIALES..." : "ACCESO CONCEDIDO"}
@@ -197,7 +197,7 @@ export default function SynapseWaitlist() {
             <span className="w-1.5 h-1.5 bg-[#E63946] rounded-full animate-ping" />
             <span className="text-[10px] text-[#E63946] uppercase tracking-widest font-bold">LIVE</span>
           </div>
-          <div className={`${inter.className} text-5xl md:text-6xl font-black tracking-tighter text-zinc-200 mb-1`}>004K</div>
+          <div className={`font-sans text-5xl md:text-6xl font-black tracking-tighter text-zinc-200 mb-1`}>004K</div>
           <div className={`${jetbrains.className} text-[9px] text-zinc-600 uppercase tracking-widest`}>Usuarios en espera</div>
         </section>
 
@@ -217,6 +217,7 @@ export default function SynapseWaitlist() {
             src="/projects/synapse/vision.png" 
             alt="Synapse Vision Engine Preview" 
             fill 
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover grayscale brightness-[0.4] contrast-125 group-hover:scale-105 group-hover:brightness-[0.6] transition-all duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-90" />
@@ -224,7 +225,7 @@ export default function SynapseWaitlist() {
             <div className={`${jetbrains.className} text-[10px] text-[#E63946] tracking-widest mb-2 flex items-center gap-2`}>
               <span className="w-1.5 h-1.5 rounded-full border border-[#E63946]" /> PREVIEW_01
             </div>
-            <p className={`${inter.className} font-bold text-lg md:text-xl uppercase tracking-tight text-white/90`}>
+            <p className={`font-sans font-bold text-lg md:text-xl uppercase tracking-tight text-white/90`}>
               Calidad de estudio. Ejecución instantánea.
             </p>
           </div>
