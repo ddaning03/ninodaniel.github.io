@@ -75,7 +75,7 @@ export default function VoidPage() {
             <Reveal>
               <div className="flex flex-col gap-2 mb-4">
                 <span className="text-[#FF0000] text-sm md:text-base tracking-[0.3em] font-bold uppercase" style={{ fontFamily: "var(--font-vt323)" }}>
-                  [ CASO DE ESTUDIO /// DTC STREETWEAR ]
+                  [ PROYECTO DE CONCEPTO /// DTC STREETWEAR ]
                 </span>
               </div>
               <h2
@@ -139,7 +139,7 @@ export default function VoidPage() {
             <Reveal className="md:col-span-4 h-full" delay={0.5}>
               <div className="relative w-full h-full bg-[#1A1A1A] border border-white/5 p-8 flex flex-col justify-between group hover:bg-[#202020] transition-colors overflow-hidden">
                 <div className="relative z-10">
-                  <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 font-bold mb-6 border-b border-white/10 pb-4">Indicadores KPI</p>
+                  <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 font-bold mb-6 border-b border-white/10 pb-4">KPIs simulados</p>
                   <ul className="space-y-4 font-mono text-xs md:text-sm text-zinc-300">
                     <li className="flex justify-between border-b border-white/5 pb-2">
                       <span className="text-white/50">Sold Out</span>
