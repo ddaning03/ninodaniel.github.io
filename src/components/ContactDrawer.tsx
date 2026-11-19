@@ -354,6 +354,14 @@ function ContactContent({
               {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
             </span>
           </MagneticButton>
+
+          <p className="text-xs text-white/40 leading-relaxed">
+            Uso tus datos solo para responderte.{" "}
+            <a href="/privacidad" className="underline hover:text-vermilion transition-colors">
+              Política de privacidad
+            </a>
+            .
+          </p>
         </form>
       )}
     </div>
