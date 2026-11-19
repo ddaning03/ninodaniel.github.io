@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
@@ -21,6 +22,10 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(isOpen, [desktopRef, mobileRef]);
 
   /* Cerrar con Escape */
   useEffect(() => {
@@ -85,6 +90,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* DESKTOP panel */}
           <motion.div
+            ref={desktopRef}
             className="fixed top-0 right-0 h-full w-[90vw] md:w-[50vw] lg:w-[40vw] bg-dark-zinc text-white z-[60] hidden md:flex flex-col shadow-2xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -109,6 +115,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* MOBILE bottom-sheet */}
           <motion.div
+            ref={mobileRef}
             className="fixed bottom-0 left-0 right-0 h-[90vh] bg-dark-zinc text-white z-[60] flex md:hidden flex-col rounded-t-3xl shadow-2xl"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}

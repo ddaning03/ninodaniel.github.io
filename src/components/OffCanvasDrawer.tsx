@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 
 interface OffCanvasDrawerProps {
@@ -23,6 +24,10 @@ export default function OffCanvasDrawer({
   children,
   darkMode = false,
 }: OffCanvasDrawerProps) {
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(isOpen, [desktopRef, mobileRef]);
+
   /* Close on Escape */
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -97,6 +102,7 @@ export default function OffCanvasDrawer({
 
           {/* DESKTOP drawer (hidden on mobile) */}
           <motion.div
+            ref={desktopRef}
             className={`fixed top-0 ${direction === "right" ? "right-0" : "left-0"} h-full w-[90vw] md:w-[60vw] ${bg} ${text} z-[60] hidden md:flex flex-col shadow-2xl`}
             variants={desktopVariants}
             initial="hidden"
@@ -133,6 +139,7 @@ export default function OffCanvasDrawer({
 
           {/* MOBILE bottom-sheet (hidden on desktop) */}
           <motion.div
+            ref={mobileRef}
             className={`fixed bottom-0 left-0 right-0 h-[85vh] ${bg} ${text} z-[60] flex md:hidden flex-col rounded-t-3xl shadow-2xl`}
             variants={mobileVariants}
             initial="hidden"
