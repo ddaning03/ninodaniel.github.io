@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { Newsreader } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 
 const newsreader = Newsreader({
