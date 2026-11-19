@@ -12,6 +12,8 @@ export interface Service {
   popular?: boolean;
   /** Mensaje precargado de WhatsApp */
   waText?: string;
+  /** Página con más detalle del servicio */
+  detail?: { href: string; label: string };
 }
 
 export const services: Service[] = [
@@ -72,7 +74,8 @@ export const extraServices: Service[] = [
       "Propuesta de arreglo para cada uno"
     ],
     cta: "Pedir Revisión",
-    waText: "¡Hola Daniel! Me interesa la revisión de seguridad para mi página. ¿Podemos charlar?"
+    waText: "¡Hola Daniel! Me interesa la revisión de seguridad para mi página. ¿Podemos charlar?",
+    detail: { href: "/revision-seguridad-ia#ejemplo", label: "Ver ejemplo de informe →" }
   },
   {
     tier: "Mantenimiento mensual",

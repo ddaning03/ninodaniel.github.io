@@ -37,6 +37,16 @@ function ServiceCard({ s, delay }: { s: Service; delay: number }) {
           ))}
         </ul>
 
+        {s.detail && (
+          <a
+            href={s.detail.href}
+            className="-mt-6 mb-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/40 hover:text-vermilion transition-colors"
+            style={{ fontFamily: "var(--font-syne)" }}
+          >
+            {s.detail.label}
+          </a>
+        )}
+
         <a
           href={`https://wa.me/5491167644591?text=${encodeURIComponent(waText)}`}
           target="_blank"
