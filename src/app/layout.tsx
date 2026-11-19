@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { siteName, siteUrl } from "@/lib/site";
+import StructuredData from "@/components/StructuredData";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${syne.variable} scroll-smooth`}>
       <body>
+        <StructuredData />
         {children}
         <Analytics />
         <SpeedInsights />
