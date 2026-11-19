@@ -59,6 +59,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${syne.variable} scroll-smooth`}>
       <body>
+        {/* Si JavaScript no carga, mostrar el contenido que las animaciones arrancan ocultando */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <StructuredData />
         <MotionProvider>{children}</MotionProvider>
         <Analytics />
