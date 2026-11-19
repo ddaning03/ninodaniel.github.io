@@ -3,6 +3,10 @@ import { Inter, Syne } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import { siteName, siteUrl } from "@/lib/site";
+import StructuredData from "@/components/StructuredData";
+import MotionProvider from "@/components/MotionProvider";
+import ClickTracker from "@/components/ClickTracker";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -14,9 +18,6 @@ const syne = Syne({
   weight: ["700", "800"],
 });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
 
 const description =
   "Páginas web para negocios locales en Buenos Aires: rápidas en el celular, fáciles de encontrar en Google y listas para recibir consultas por WhatsApp. También reviso la seguridad de páginas hechas con IA (Lovable, Bolt, v0).";
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    siteName: "Daniel Niño // Estratega Visual",
+    siteName,
     title: "Daniel Niño | Páginas web y seguridad para negocios en Buenos Aires",
     description,
     images: [
@@ -59,7 +60,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${syne.variable} scroll-smooth`}>
       <body>
-        {children}
+        {/* Si JavaScript no carga, mostrar el contenido que las animaciones arrancan ocultando */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <StructuredData />
+        <MotionProvider>{children}</MotionProvider>
+        <ClickTracker />
         <Analytics />
         <SpeedInsights />
       </body>

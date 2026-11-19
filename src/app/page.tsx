@@ -13,6 +13,8 @@ import OffCanvasDrawer from "@/components/OffCanvasDrawer";
 import ContactDrawer from "@/components/ContactDrawer";
 import ProjectCard from "@/components/ProjectCard";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import Footer from "@/components/Footer";
+import FaqSection from "@/components/FaqSection";
 
 /* ─── Drawer content for Web cases ─── */
 function WebDrawerContent() {
@@ -130,6 +132,7 @@ export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
+    <>
     <main>
       <Navbar onCtaClick={() => setContactOpen(true)} />
 
@@ -143,7 +146,12 @@ export default function Home() {
 
       <TestimonialsSection />
 
+      <FaqSection />
+
       <MethodologySection onContactClick={() => setContactOpen(true)} />
+    </main>
+
+      <Footer />
 
       {/* Web cases drawer — from RIGHT on desktop */}
       <OffCanvasDrawer
@@ -172,6 +180,6 @@ export default function Home() {
       />
 
       <FloatingWhatsApp />
-    </main>
+    </>
   );
 }

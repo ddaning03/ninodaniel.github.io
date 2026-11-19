@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFocusTrap } from "@/lib/useFocusTrap";
+import { track } from "@vercel/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
@@ -21,6 +23,10 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(isOpen, [desktopRef, mobileRef]);
 
   /* Cerrar con Escape */
   useEffect(() => {
@@ -55,14 +61,15 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
       });
 
       if (response.ok) {
+        track("formulario_enviado");
         setSubmitted(true);
         setFormData({ name: "", email: "", message: "", _gotcha: "" });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        setError("Hubo un error al enviar el mensaje. Prueba de nuevo.");
+        setError("Hubo un error al enviar el mensaje. Probá de nuevo.");
       }
     } catch {
-      setError("Error de conexión. Revisa tu internet.");
+      setError("Error de conexión. Revisá tu internet.");
     } finally {
       setIsSubmitting(false);
     }
@@ -85,6 +92,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* DESKTOP panel */}
           <motion.div
+            ref={desktopRef}
             className="fixed top-0 right-0 h-full w-[90vw] md:w-[50vw] lg:w-[40vw] bg-dark-zinc text-white z-[60] hidden md:flex flex-col shadow-2xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -109,6 +117,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* MOBILE bottom-sheet */}
           <motion.div
+            ref={mobileRef}
             className="fixed bottom-0 left-0 right-0 h-[90vh] bg-dark-zinc text-white z-[60] flex md:hidden flex-col rounded-t-3xl shadow-2xl"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -248,7 +257,7 @@ function ContactContent({
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px bg-white/10" />
         <span className="text-white/30 text-xs uppercase tracking-widest" style={{ fontFamily: "var(--font-syne)" }}>
-          o envía un mensaje
+          o mandá un mensaje
         </span>
         <div className="flex-1 h-px bg-white/10" />
       </div>
@@ -319,7 +328,7 @@ function ContactContent({
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors resize-none"
-              placeholder="Cuéntame sobre tu proyecto..."
+              placeholder="Contame sobre tu proyecto..."
             />
           </div>
 
@@ -354,6 +363,14 @@ function ContactContent({
               {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
             </span>
           </MagneticButton>
+
+          <p className="text-xs text-white/40 leading-relaxed">
+            Uso tus datos solo para responderte.{" "}
+            <a href="/privacidad" className="underline hover:text-vermilion transition-colors">
+              Política de privacidad
+            </a>
+            .
+          </p>
         </form>
       )}
     </div>

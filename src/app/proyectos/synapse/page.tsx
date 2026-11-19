@@ -173,7 +173,7 @@ export default function SynapseWaitlist() {
             </div>
             <TypewriterHeadline />
             <div className={`${jetbrains.className} text-xs text-zinc-500 border-l border-[#E63946]/30 pl-4 py-1 mt-4`}>
-              &gt; PROMPT: "Cinematic close-up of dark futuristic circuit boards..."_
+              &gt; PROMPT: &quot;Cinematic close-up of dark futuristic circuit boards...&quot;_
             </div>
           </div>
         </section>
