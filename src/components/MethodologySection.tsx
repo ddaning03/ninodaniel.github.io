@@ -71,18 +71,18 @@ export default function MethodologySection({ onContactClick }: MethodologySectio
               className="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none"
               style={{ fontFamily: "var(--font-syne)" }}
             >
-              ¿Listo para dejar de perder leads?
+              ¿Hablamos de tu página?
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
             <MagneticButton
               className="w-full max-w-3xl bg-vermilion text-white text-xl md:text-2xl font-bold py-8 lg:py-10 uppercase tracking-[0.2em] hover:bg-black transition-all duration-500 shadow-2xl"
-              ariaLabel="Agendar sesión estratégica"
+              ariaLabel="Abrir contacto"
               onClick={onContactClick}
             >
               <span style={{ fontFamily: "var(--font-syne)" }}>
-                Agendar Sesión Estratégica
+                Escribime y lo charlamos
               </span>
             </MagneticButton>
           </ScrollReveal>
