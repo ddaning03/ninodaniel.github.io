@@ -1,0 +1,18 @@
+# Revisa las dependencias una vez por semana y abre un único PR con las
+# actualizaciones menores y de parche. Los saltos de versión mayor se ignoran
+# (pueden romper cosas y conviene hacerlos a mano).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "America/Argentina/Buenos_Aires"
+    open-pull-requests-limit: 5
+    groups:
+      dependencias:
+        update-types: ["minor", "patch"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
