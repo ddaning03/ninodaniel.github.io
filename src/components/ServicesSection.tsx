@@ -49,6 +49,7 @@ function ServiceCard({ s, delay }: { s: Service; delay: number }) {
 
         <a
           href={`https://wa.me/5491167644591?text=${encodeURIComponent(waText)}`}
+          data-origen={`plan: ${s.tier}`}
           target="_blank"
           rel="noopener noreferrer"
           className={`w-full py-4 text-xs font-bold uppercase text-center block tracking-[0.2em] transition-all duration-500 border ${s.popular ? 'bg-vermilion border-vermilion text-white hover:bg-white hover:text-black hover:border-white' : 'border-white/20 hover:bg-white hover:text-black hover:border-white'}`}

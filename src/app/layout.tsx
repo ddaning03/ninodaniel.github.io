@@ -6,6 +6,7 @@ import "./globals.css";
 import { siteName, siteUrl } from "@/lib/site";
 import StructuredData from "@/components/StructuredData";
 import MotionProvider from "@/components/MotionProvider";
+import ClickTracker from "@/components/ClickTracker";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -65,6 +66,7 @@ export default function RootLayout({
         </noscript>
         <StructuredData />
         <MotionProvider>{children}</MotionProvider>
+        <ClickTracker />
         <Analytics />
         <SpeedInsights />
       </body>

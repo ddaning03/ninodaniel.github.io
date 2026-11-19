@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFocusTrap } from "@/lib/useFocusTrap";
+import { track } from "@vercel/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
@@ -60,6 +61,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
       });
 
       if (response.ok) {
+        track("formulario_enviado");
         setSubmitted(true);
         setFormData({ name: "", email: "", message: "", _gotcha: "" });
         setTimeout(() => setSubmitted(false), 5000);

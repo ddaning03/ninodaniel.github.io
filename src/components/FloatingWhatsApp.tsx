@@ -15,6 +15,7 @@ export default function FloatingWhatsApp() {
       whileTap={{ scale: 0.9 }}
       className="fixed bottom-8 right-8 z-[60] bg-zinc-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border border-white/10 group overflow-hidden"
       aria-label="Contactar por WhatsApp"
+      data-origen="boton-flotante"
     >
       <div className="absolute inset-0 bg-vermilion translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
       <svg
