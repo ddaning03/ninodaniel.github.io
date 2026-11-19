@@ -1,0 +1,5 @@
+# Si encontraste un problema de seguridad en este sitio, escribime.
+# If you found a security issue on this site, please contact me.
+Contact: mailto:ninogalattidaniel@gmail.com
+Expires: 2027-11-19T00:00:00.000Z
+Preferred-Languages: es, en
