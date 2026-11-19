@@ -59,10 +59,10 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         setFormData({ name: "", email: "", message: "", _gotcha: "" });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        setError("Hubo un error al enviar el mensaje. Prueba de nuevo.");
+        setError("Hubo un error al enviar el mensaje. Probá de nuevo.");
       }
     } catch {
-      setError("Error de conexión. Revisa tu internet.");
+      setError("Error de conexión. Revisá tu internet.");
     } finally {
       setIsSubmitting(false);
     }
@@ -248,7 +248,7 @@ function ContactContent({
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px bg-white/10" />
         <span className="text-white/30 text-xs uppercase tracking-widest" style={{ fontFamily: "var(--font-syne)" }}>
-          o envía un mensaje
+          o mandá un mensaje
         </span>
         <div className="flex-1 h-px bg-white/10" />
       </div>
@@ -319,7 +319,7 @@ function ContactContent({
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-vermilion transition-colors resize-none"
-              placeholder="Cuéntame sobre tu proyecto..."
+              placeholder="Contame sobre tu proyecto..."
             />
           </div>
 
