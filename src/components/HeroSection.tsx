@@ -81,8 +81,9 @@ export default function HeroSection({ onWebClick }: HeroSectionProps) {
 
           <ScrollReveal delay={0.6}>
             <p className="mt-8 text-lg lg:text-2xl font-medium max-w-2xl opacity-70">
-              Desarrollo Web de alta conversión y Marketing Digital
-              especializado en escalar tu negocio.
+              Páginas web para negocios de Buenos Aires que te traen
+              consultas por WhatsApp. Y revisión de seguridad para páginas
+              hechas con IA.
             </p>
           </ScrollReveal>
         </div>
