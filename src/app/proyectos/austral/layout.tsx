@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio de concepto para un fotógrafo de paisajes: diseño editorial oscuro, galería con visor a pantalla completa y venta de copias.",
   openGraph: {
-    images: ["/projects/austral/granito-alba.jpg"],
+    images: ["/projects/austral/lago-lengas.jpg"],
     title: "Austral — Proyecto de concepto | Daniel Niño",
     description:
       "Portfolio de concepto para un fotógrafo de paisajes: diseño editorial oscuro, galería con visor a pantalla completa y venta de copias.",
