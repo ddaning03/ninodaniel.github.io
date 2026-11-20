@@ -45,6 +45,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
+    // 75 = por defecto; 90 = fotografía (proyecto Austral)
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",
