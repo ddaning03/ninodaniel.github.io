@@ -31,6 +31,16 @@ function WebDrawerContent() {
       />
 
       <ProjectCard
+        imageSrc="/projects/austral/granito-alba.jpg"
+        imageAlt="AUSTRAL — Portfolio de fotografía de paisaje"
+        deployUrl="/proyectos/austral"
+        category="Austral — Fotografía de Paisaje"
+        tag="Proyecto de concepto • Portfolio"
+        description="Portfolio editorial para un fotógrafo de paisajes. Portada a pantalla completa con parallax, galería asimétrica con visor accesible y venta de copias firmadas."
+        techLine="Stack: Next.js + Framer Motion • Visor con teclado y foco accesible"
+      />
+
+      <ProjectCard
         imageSrc="/projects/nocturne/interior.png"
         imageAlt="NOCTURNE. — Gastronomía de Autor"
         deployUrl="/proyectos/nocturne"
