@@ -21,8 +21,8 @@ function WebDrawerContent() {
   return (
     <div className="space-y-16">
       <ProjectCard
-        imageSrc="/projects/kenta/hero.png"
-        imageAlt="KENTA – Landing page de cosméticos premium"
+        imageSrc="/projects/kenta/preview.jpg"
+        imageAlt="Captura de la landing de KENTA: titular con tipografía serif y frasco de sérum"
         deployUrl="/proyectos/kenta"
         category="Kenta — Cosméticos Premium"
         tag="Proyecto de concepto • Web"
@@ -31,8 +31,8 @@ function WebDrawerContent() {
       />
 
       <ProjectCard
-        imageSrc="/projects/austral/lago-lengas.jpg"
-        imageAlt="AUSTRAL — Portfolio de fotografía de paisaje"
+        imageSrc="/projects/austral/preview.jpg"
+        imageAlt="Captura del portfolio AUSTRAL: lago patagónico a pantalla completa con el título La luz del sur"
         deployUrl="/proyectos/austral"
         category="Austral — Fotografía de Paisaje"
         tag="Proyecto de concepto • Portfolio"
@@ -41,8 +41,8 @@ function WebDrawerContent() {
       />
 
       <ProjectCard
-        imageSrc="/projects/nocturne/interior.png"
-        imageAlt="NOCTURNE. — Gastronomía de Autor"
+        imageSrc="/projects/nocturne/preview.jpg"
+        imageAlt="Captura de NOCTURNE: titular editorial y grilla oscura con foto del salón"
         deployUrl="/proyectos/nocturne"
         category="Nocturne — Fine Dining"
         tag="Proyecto de concepto • Diseño Editorial"
@@ -51,8 +51,8 @@ function WebDrawerContent() {
       />
 
       <ProjectCard
-        imageSrc="/projects/synapse/vision.png"
-        imageAlt="SYNAPSE — Waitlist Interface"
+        imageSrc="/projects/synapse/preview.jpg"
+        imageAlt="Captura de SYNAPSE: interfaz tipo terminal con titular en rojo y formulario de acceso"
         deployUrl="/proyectos/synapse"
         category="Synapse — AI Lab"
         tag="Proyecto de concepto • UX Técnico"
