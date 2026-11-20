@@ -31,7 +31,7 @@ function WebDrawerContent() {
       />
 
       <ProjectCard
-        imageSrc="/projects/austral/granito-alba.jpg"
+        imageSrc="/projects/austral/lago-lengas.jpg"
         imageAlt="AUSTRAL — Portfolio de fotografía de paisaje"
         deployUrl="/proyectos/austral"
         category="Austral — Fotografía de Paisaje"

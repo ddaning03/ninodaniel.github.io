@@ -45,88 +45,66 @@ type Photo = {
 
 const photos: Photo[] = [
   {
-    src: "/projects/austral/granito-alba.jpg",
-    title: "Granito al alba",
-    place: "Santa Cruz",
+    src: "/projects/austral/lago-lengas.jpg",
+    title: "Lago entre lengas",
+    place: "Tierra del Fuego",
     year: "2025",
-    coords: "49°16′S 73°02′W",
-    data: "1.250 m · 06:42",
-    alt: "Agujas de granito con nieve en las cumbres, iluminadas de rosa al amanecer y reflejadas en una laguna quieta",
-    w: 2400,
+    coords: "54°41′S 68°10′W",
+    data: "210 m · 07:40",
+    alt: "Lago de agua gris verdosa entre montañas, enmarcado por ramas de lenga bajo un cielo cubierto",
+    w: 2000,
+    h: 1332,
+  },
+  {
+    src: "/projects/austral/lago-cumbre.jpg",
+    title: "Lago desde la cumbre",
+    place: "Río Negro",
+    year: "2024",
+    coords: "41°10′S 71°24′W",
+    data: "1.400 m · 13:05",
+    alt: "Vista desde una cumbre rocosa de un lago azul profundo rodeado de bosque y montañas, con nubes blancas",
+    w: 1333,
+    h: 2000,
+  },
+  {
+    src: "/projects/austral/glaciar-frente.jpg",
+    title: "Frente del glaciar",
+    place: "Santa Cruz",
+    year: "2024",
+    coords: "50°29′S 73°03′W",
+    data: "185 m · 11:20",
+    alt: "Pared de hielo de un glaciar sobre un lago turquesa con témpanos, montañas nevadas al fondo y bosque otoñal en primer plano",
+    w: 2000,
     h: 1500,
   },
   {
-    src: "/projects/austral/valle-niebla.jpg",
-    title: "Valle en niebla",
-    place: "Neuquén",
-    year: "2024",
-    coords: "40°09′S 71°21′W",
-    data: "980 m · 08:10",
-    alt: "Seis cordones de montaña superpuestos, cada vez más claros, separados por bancos de niebla",
-    w: 2400,
-    h: 1600,
-  },
-  {
-    src: "/projects/austral/via-lactea.jpg",
-    title: "Vía Láctea sobre la Puna",
-    place: "Jujuy",
+    src: "/projects/austral/espejo-yungas.jpg",
+    title: "Espejo en las yungas",
+    place: "Tucumán",
     year: "2025",
-    coords: "23°12′S 66°34′W",
-    data: "4.100 m · 02:15",
-    alt: "La Vía Láctea cruza en diagonal un cielo lleno de estrellas sobre la silueta oscura de los cerros",
-    w: 1600,
-    h: 2000,
+    coords: "26°48′S 65°22′W",
+    data: "1.050 m · 17:45",
+    alt: "Lago quieto que refleja nubes y cerros verdes, con un bote pequeño en el centro",
+    w: 2000,
+    h: 1332,
   },
   {
-    src: "/projects/austral/dunas.jpg",
-    title: "Dunas, última luz",
-    place: "Catamarca",
-    year: "2024",
-    coords: "27°41′S 67°37′W",
-    data: "1.500 m · 19:38",
-    alt: "Dunas de arena dorada con el sol bajo en el horizonte y sombras suaves entre las crestas",
-    w: 2400,
-    h: 1600,
-  },
-  {
-    src: "/projects/austral/glaciar.jpg",
-    title: "Frente de hielo",
-    place: "Santa Cruz",
-    year: "2023",
-    coords: "50°29′S 73°03′W",
-    data: "210 m · 11:05",
-    alt: "Macizo nevado envuelto en niebla que se refleja en un lago glaciar de agua azul",
-    w: 1600,
-    h: 2000,
-  },
-  {
-    src: "/projects/austral/costa.jpg",
-    title: "Acantilado, marea alta",
+    src: "/projects/austral/ruta-alamos.jpg",
+    title: "Ruta y álamos",
     place: "Chubut",
-    year: "2025",
-    coords: "42°34′S 64°16′W",
-    data: "0 m · 20:51",
-    alt: "Sol poniéndose sobre el mar con un camino de luz en el agua y un acantilado en sombra a la izquierda",
-    w: 2400,
-    h: 1600,
-  },
-  {
-    src: "/projects/austral/tormenta.jpg",
-    title: "Antes de la tormenta",
-    place: "La Pampa",
     year: "2023",
-    coords: "36°37′S 64°17′W",
-    data: "180 m · 17:22",
-    alt: "Llanura con un árbol solitario bajo nubes de tormenta y rayos de sol que se abren paso",
-    w: 2400,
-    h: 1600,
+    coords: "42°55′S 71°18′W",
+    data: "640 m · 09:15",
+    alt: "Curva de una ruta frente a una hilera de álamos sin hojas, campo dorado y un banco de niebla sobre los cerros",
+    w: 2000,
+    h: 1333,
   },
 ];
 
 const series = [
-  { name: "Patagonia", count: "24 fotografías", years: "2019 — 2025", cover: photos[0] },
-  { name: "Puna", count: "18 fotografías", years: "2021 — 2025", cover: photos[2] },
-  { name: "Costa atlántica", count: "12 fotografías", years: "2022 — 2025", cover: photos[5] },
+  { name: "Hielos", count: "16 fotografías", years: "2020 — 2025", cover: photos[2] },
+  { name: "Lagos del sur", count: "24 fotografías", years: "2019 — 2025", cover: photos[1] },
+  { name: "Norte verde", count: "12 fotografías", years: "2022 — 2025", cover: photos[3] },
 ];
 
 const prints = [
@@ -342,10 +320,8 @@ function Lightbox({
 const layout = [
   "md:col-span-8",
   "md:col-span-4 md:mt-40",
-  "md:col-span-5 md:col-start-2",
-  "md:col-span-6 md:mt-24",
-  "md:col-span-4 md:col-start-2 md:-mt-10",
-  "md:col-span-7 md:mt-32",
+  "md:col-span-6 md:col-start-2",
+  "md:col-span-5 md:mt-32",
   "md:col-span-10 md:col-start-2",
 ];
 
@@ -358,7 +334,7 @@ function Gallery({ onOpen }: { onOpen: (i: number) => void }) {
             Obra <em style={{ color: AMBER }}>seleccionada</em>
           </h2>
           <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 hidden md:block" style={M}>
-            {photos.length} de 54 · 2019 — 2025
+            {photos.length} de 52 · 2019 — 2025
           </p>
         </div>
       </Reveal>
@@ -499,7 +475,7 @@ export default function AustralPage() {
 
         {/* Banda a sangre */}
         <section className="relative h-[80vh] min-h-[480px] overflow-hidden" aria-label="Cita">
-          <Image src={photos[1].src} alt={photos[1].alt} fill sizes="100vw" className="object-cover" />
+          <Image src={photos[4].src} alt={photos[4].alt} fill sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/65" />
           <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
             <Reveal>
