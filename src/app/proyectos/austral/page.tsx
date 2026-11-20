@@ -22,6 +22,9 @@ const mono = IBM_Plex_Mono({
 
 const ease = [0.32, 0.72, 0, 1] as const;
 
+/* Calidad de compresión para las fotos (debe estar en images.qualities de next.config) */
+const Q = 90;
+
 /* Paleta */
 const INK = "#0E0D0B";
 const BONE = "#EDE8DF";
@@ -154,7 +157,7 @@ function Caption({ p, index }: { p: Photo; index: number }) {
 function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1.22]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.02, 1.1]);
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const fade = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const hero = photos[0];
@@ -162,7 +165,7 @@ function Hero() {
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[600px] overflow-hidden" aria-label="Portada">
       <motion.div className="absolute inset-0" style={{ scale, y }}>
-        <Image src={hero.src} alt={hero.alt} fill priority sizes="100vw" className="object-cover" />
+        <Image src={hero.src} alt={hero.alt} fill priority quality={Q} sizes="(max-width: 768px) 280vw, 100vw" className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#0E0D0B]" />
 
@@ -283,7 +286,7 @@ function Lightbox({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5, ease }}
               >
-                <Image src={p.src} alt={p.alt} fill sizes="100vw" className="object-contain" />
+                <Image src={p.src} alt={p.alt} fill quality={Q} sizes="100vw" className="object-contain" />
               </motion.div>
             </AnimatePresence>
             <button
@@ -353,7 +356,8 @@ function Gallery({ onOpen }: { onOpen: (i: number) => void }) {
                   src={p.src}
                   alt={p.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, 66vw"
+                  quality={Q}
+                  sizes="(max-width: 768px) 100vw, 75vw"
                   className="object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.04]"
                 />
                 <span
@@ -448,7 +452,8 @@ export default function AustralPage() {
                       src={s.cover.src}
                       alt={s.cover.alt}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={Q}
+                      sizes="(max-width: 768px) 200vw, 60vw"
                       className="object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.06]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0" />
@@ -475,7 +480,7 @@ export default function AustralPage() {
 
         {/* Banda a sangre */}
         <section className="relative h-[80vh] min-h-[480px] overflow-hidden" aria-label="Cita">
-          <Image src={photos[4].src} alt={photos[4].alt} fill sizes="100vw" className="object-cover" />
+          <Image src={photos[4].src} alt={photos[4].alt} fill quality={Q} sizes="(max-width: 768px) 210vw, 100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/65" />
           <div className="relative z-10 h-full flex items-center justify-center px-6 text-center">
             <Reveal>
