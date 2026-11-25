@@ -45,3 +45,15 @@ body {
   background: rgba(150, 150, 150, 0.5);
   margin: 0 auto;
 }
+
+/* ─── Cinta en movimiento (demos con diseño editorial) ─── */
+@keyframes demo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.demo-marquee {
+  animation: demo-marquee 32s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-marquee { animation: none; }
+}
