@@ -51,12 +51,12 @@ export default function TestimonialsSection() {
             </div>
           </ScrollReveal>
 
-          {/* Invitation for next client */}
+          {/* Oferta: precio de lanzamiento */}
           <ScrollReveal delay={0.4}>
             <div className="p-12 border-2 border-dashed border-zinc-900/10 flex flex-col justify-center items-center text-center space-y-6 group hover:border-vermilion/30 transition-colors">
-              <h3 className="text-2xl font-bold uppercase tracking-tight" style={{ fontFamily: "var(--font-syne)" }}>Tu próximo caso <br /> de éxito acá.</h3>
-              <p className="text-zinc-400 text-sm max-w-xs uppercase tracking-widest font-bold">Reservá uno de los 3 cupos con precio de lanzamiento de este mes.</p>
-              <p className="text-zinc-400 text-[10px] max-w-xs uppercase tracking-widest">A cambio de un testimonio y permiso para mostrar el trabajo. Los cupos se renuevan cada mes.</p>
+              <h3 className="text-2xl font-bold uppercase tracking-tight" style={{ fontFamily: "var(--font-syne)" }}>Precio de <br /> lanzamiento.</h3>
+              <p className="text-zinc-400 text-sm max-w-xs uppercase tracking-widest font-bold">3 cupos por mes para negocios locales.</p>
+              <p className="text-zinc-400 text-[10px] max-w-xs uppercase tracking-widest">Precio especial a cambio de un testimonio y permiso para mostrar el trabajo terminado.</p>
               <a 
                 href={`https://wa.me/5491167644591?text=${encodeURIComponent("¡Hola Daniel! Vengo de tu portfolio y me gustaría solicitar el precio especial para primeros clientes.")}`}
                 target="_blank"
