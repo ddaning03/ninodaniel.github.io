@@ -10,22 +10,27 @@ const isDev = process.env.NODE_ENV === "development";
  * - Formspree: destino del formulario de contacto.
  * - vercel.live: barra de comentarios de Vercel en los deploys de preview.
  */
-const cspHeader = `
+const buildCsp = (extraFrameSrc = "") =>
+  `
   default-src 'self';
   script-src 'self' 'unsafe-inline' https://vercel.live${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data:;
   font-src 'self' data:;
   connect-src 'self' https://formspree.io https://vercel.live;
-  frame-src https://vercel.live;
+  frame-src https://vercel.live${extraFrameSrc};
   object-src 'none';
   base-uri 'self';
   form-action 'self' https://formspree.io;
   frame-ancestors 'none';
   upgrade-insecure-requests;
 `
-  .replace(/\s{2,}/g, " ")
-  .trim();
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+const cspHeader = buildCsp();
+/* Demos para prospectos: además permiten el mapa embebido de Google Maps */
+const cspDemos = buildCsp(" https://www.google.com https://maps.google.com");
 
 const securityHeaders = [
   { key: "Content-Security-Policy", value: cspHeader },
@@ -53,6 +58,14 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        // Va después: con la misma clave, la última regla pisa a la anterior
+        source: "/demos/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: cspDemos },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
       },
     ];
   },
