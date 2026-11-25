@@ -41,4 +41,36 @@ export type Demo = {
 
   /** Color principal en hexadecimal, por ejemplo "#2563EB". */
   color: string;
+
+  /* ───────── Opcionales de diseño y contenido extra ───────── */
+
+  /** "oscuro" para fondo negro con detalles en el color principal. Por defecto "claro". */
+  tema?: "claro" | "oscuro";
+  /** "condensada" usa una tipografía técnica y angosta para títulos. Por defecto la del sitio. */
+  fuente?: "sitio" | "condensada";
+  /** Nombre corto para la franja superior y el título, por ejemplo "Radaelli". */
+  nombreCorto?: string;
+  /** Año desde el que trabaja. Solo si está confirmado; si no, se omite la línea. */
+  desde?: string;
+  /** Texto del botón principal de WhatsApp. Por defecto "Escribinos por WhatsApp". */
+  textoBotonWhatsApp?: string;
+  /** Mensaje prellenado del botón principal de WhatsApp. */
+  mensajeWhatsApp?: string;
+  /** Si es true, cada servicio lleva su propio botón de WhatsApp que menciona ese servicio. */
+  whatsappPorServicio?: boolean;
+
+  /** Foto de fondo del hero (un trabajo terminado). */
+  heroImagen?: { src: string; alt: string };
+  /** Fotos de trabajos para la galería. */
+  fotos?: { src: string; alt: string; ancho: number; alto: number }[];
+  /** Pasos de "Cómo trabajamos". */
+  pasos?: { titulo: string; texto: string }[];
+
+  /** Varias sucursales. Si está, reemplaza a dirección/mapa/horarios de arriba. */
+  sucursales?: { nombre: string; direccion?: string; mapa?: string; horarios?: { dias: string; horas: string }[] }[];
+
+  /** Título del bloque de cierre con botón de WhatsApp, por ejemplo "¿Tu auto necesita un arreglo?". */
+  cierre?: string;
+  /** Link al perfil de Instagram. Si está, el pie muestra links a Instagram y WhatsApp. */
+  instagram?: string;
 };
