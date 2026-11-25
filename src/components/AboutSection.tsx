@@ -69,7 +69,7 @@ export default function AboutSection() {
             <ScrollReveal delay={0.5}>
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-900/10">
                 <div>
-                  <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Tecnologías</h3>
+                  <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 mb-2" style={{ fontFamily: "var(--font-syne)" }}>Herramientas</h3>
                   <p className="text-sm font-bold">Next.js, Framer Motion, Meta Ads</p>
                 </div>
                 <div>
