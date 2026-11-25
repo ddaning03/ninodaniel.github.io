@@ -14,7 +14,7 @@ const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' https://vercel.live${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://lh3.googleusercontent.com;
+  img-src 'self' blob: data:;
   font-src 'self' data:;
   connect-src 'self' https://formspree.io https://vercel.live;
   frame-src https://vercel.live;
@@ -47,12 +47,6 @@ const nextConfig: NextConfig = {
   images: {
     // 75 = por defecto; 90 = fotografía (proyecto Austral)
     qualities: [75, 90],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-      },
-    ],
   },
   async headers() {
     return [
