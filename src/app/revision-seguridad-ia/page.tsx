@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/pageMetadata";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import { extraServices } from "@/lib/services";
@@ -6,16 +6,10 @@ import { extraServices } from "@/lib/services";
 const service = extraServices.find((s) => s.tier === "Revisión de seguridad")!;
 const waHref = `https://wa.me/5491167644591?text=${encodeURIComponent(service.waText ?? "")}`;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Revisión de seguridad para páginas hechas con IA",
   description: `¿Tu página la hiciste con Lovable, Bolt o v0? La reviso, te paso un informe en lenguaje simple con los riesgos encontrados y cómo arreglarlos. $${service.price} ARS.`,
-  openGraph: {
-    title: "Revisión de seguridad para páginas hechas con IA | Daniel Niño",
-    description:
-      "La reviso, te paso un informe en lenguaje simple con los riesgos encontrados y cómo arreglarlos.",
-    images: ["/og-image.jpg"],
-  },
-};
+});
 
 const syne = { fontFamily: "var(--font-syne)" };
 
