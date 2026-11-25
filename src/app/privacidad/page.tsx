@@ -48,7 +48,9 @@ const sections = [
         El formulario se envía a través de Formspree, un servicio que me reenvía
         el mensaje por email y que guarda los datos en servidores fuera de
         Argentina. La página está alojada en Vercel, que mide visitas de forma
-        anónima y sin cookies (no sabe quién sos).
+        anónima y sin cookies (no sabe quién sos). Las páginas de muestra que
+        preparo para negocios incluyen un mapa de Google Maps, que se carga desde
+        los servidores de Google y se rige por su propia política de privacidad.
       </>
     ),
   },
