@@ -11,13 +11,13 @@ const steps = [
   },
   {
     num: "02.",
-    title: "Diseño de Infraestructura",
-    desc: "Construimos la base visual y técnica optimizada para escalar sin romper la experiencia.",
+    title: "Diseño y armado",
+    desc: "Armamos tu página para que se vea bien en el celular, cargue rápido y sea fácil escribirte. Antes de publicarla la revisás vos.",
   },
   {
     num: "03.",
-    title: "Lanzamiento y Escala",
-    desc: "Iteración continua basada en datos reales para maximizar el retorno de inversión.",
+    title: "Lanzamiento y seguimiento",
+    desc: "La publicamos y miramos cuántas consultas te llegan. Con eso ajustamos lo que haga falta para que te escriban más.",
   },
 ];
 

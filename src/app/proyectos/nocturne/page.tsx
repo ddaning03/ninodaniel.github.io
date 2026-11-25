@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { Newsreader } from "next/font/google";
 import Image from "next/image";
+import ConceptBanner from "@/components/ConceptBanner";
 import { motion, useInView } from "framer-motion";
 
 const newsreader = Newsreader({
@@ -43,8 +44,10 @@ export default function NocturnePage() {
       className={`${newsreader.variable} bg-[#0A0A0A] text-[#F9F6F0] antialiased min-h-screen selection:bg-[#c00100] selection:text-white flex overflow-hidden`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
+      <ConceptBanner />
+
       {/* ─── FIXED VERTICAL SIDEBAR ─── */}
-      <aside className="fixed left-0 top-0 h-screen w-16 md:w-32 border-r border-white/10 flex flex-col items-center justify-center bg-[#0A0A0A] z-50">
+      <aside className="fixed left-0 top-7 h-[calc(100vh-1.75rem)] w-16 md:w-32 border-r border-white/10 flex flex-col items-center justify-center bg-[#0A0A0A] z-50">
         <div className="flex justify-center items-center h-full w-full relative">
           <h1
             className="text-[3.5rem] md:text-[5rem] lg:text-[7.5rem] leading-none tracking-tighter mix-blend-difference select-none opacity-90 absolute whitespace-nowrap left-1/2 -translate-x-1/2"
@@ -68,7 +71,7 @@ export default function NocturnePage() {
       </aside>
 
       {/* ─── MAIN SCROLLABLE CONTENT (BENTO LAYOUT) ─── */}
-      <main className="ml-16 md:ml-32 w-full px-4 md:px-8 py-8 md:py-16 overflow-y-auto">
+      <main className="ml-16 md:ml-32 mt-7 w-full px-4 md:px-8 py-8 md:py-16 overflow-y-auto">
         <div className="max-w-[1400px] mx-auto">
           {/* Top Header */}
           <header className="mb-14">
@@ -95,7 +98,7 @@ export default function NocturnePage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group">
                 <Image
                   src="/projects/nocturne/interior.png"
-                  alt="Nocturne Interior"
+                  alt="Salón de Nocturne con paredes de hormigón, listones de madera y luz cálida"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 opacity-80"
                   sizes="(max-width: 768px) 100vw, 66vw"
@@ -151,7 +154,7 @@ export default function NocturnePage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group">
                 <Image
                   src="/projects/nocturne/hero.png"
-                  alt="Omakase Dish"
+                  alt="Pieza de nigiri de otoro con hoja de oro sobre un plato de cerámica oscura"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 opacity-80"
                   sizes="(max-width: 768px) 100vw, 50vw"

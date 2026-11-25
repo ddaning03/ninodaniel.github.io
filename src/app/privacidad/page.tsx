@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/pageMetadata";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Política de privacidad",
   description:
     "Qué datos guardo cuando me escribís desde el formulario o por WhatsApp, para qué los uso y cómo pedir que los borre.",
-};
+});
 
 const sections = [
   {

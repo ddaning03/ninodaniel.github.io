@@ -23,12 +23,9 @@ function AnimatedHeading() {
       className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tighter text-zinc-900 max-w-4xl"
       style={{ fontFamily: "var(--font-syne)" }}
     >
-      {/* Texto completo para Google y lectores de pantalla (la animación va oculta para ellos) */}
-      <span className="sr-only">{`${line1} factura.`}</span>
       {words.map((word, i) => (
         <motion.span
           key={i}
-          aria-hidden="true"
           className="inline-block mr-[0.25em]"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -38,11 +35,12 @@ function AnimatedHeading() {
             ease: [0.32, 0.72, 0, 1],
           }}
         >
-          {word}
+          {/* Espacio real al final: no se dibuja (queda al final del bloque) pero hace que
+              Google y los lectores de pantalla lean "No diseño páginas…" con espacios */}
+          {i < words.length - 1 ? `${word} ` : word}
         </motion.span>
       ))}{" "}
       <motion.span
-        aria-hidden="true"
         className="text-vermilion italic font-bold inline-block"
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
         animate={

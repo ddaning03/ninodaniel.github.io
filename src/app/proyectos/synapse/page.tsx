@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import ConceptBanner from "@/components/ConceptBanner";
 import { motion } from "framer-motion";
 
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "700"] });
@@ -93,7 +94,8 @@ export default function SynapseWaitlist() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-zinc-400 selection:bg-[#E63946] selection:text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-400 selection:bg-[#E63946] selection:text-white flex flex-col items-center justify-center p-4 md:p-8 pt-11 md:pt-[3.75rem] relative overflow-hidden">
+      <ConceptBanner />
       {/* Background Noise */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"
@@ -215,7 +217,7 @@ export default function SynapseWaitlist() {
         <section className="col-span-1 md:col-span-2 md:row-span-1 relative bg-[#080808] border border-zinc-900/50 hover:border-[#E63946]/50 transition-colors duration-500 overflow-hidden group min-h-[200px] md:min-h-0">
           <Image 
             src="/projects/synapse/vision.png" 
-            alt="Synapse Vision Engine Preview" 
+            alt="Vista previa del motor de video de Synapse: placa de circuitos oscura con líneas de luz roja" 
             fill 
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover grayscale brightness-[0.4] contrast-125 group-hover:scale-105 group-hover:brightness-[0.6] transition-all duration-700"

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import ConceptBanner from "@/components/ConceptBanner";
 import { motion, useInView } from "framer-motion";
 
 const playfair = Playfair_Display({
@@ -123,7 +124,7 @@ function HeroSection() {
               <div className="relative aspect-[4/5] max-w-[500px] mx-auto overflow-hidden">
                 <Image
                   src="/projects/kenta/hero.png"
-                  alt="KENTA Hydrating & Brightening Serum"
+                  alt="Frasco de sérum KENTA con gotero dorado sobre una piedra travertino"
                   fill
                   className="object-cover"
                   priority
@@ -371,8 +372,10 @@ export default function KentaPage() {
       className={`${playfair.variable} bg-[#FDFBF7] text-[#2A2A2A] antialiased`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
+      <ConceptBanner />
+
       {/* Minimal nav */}
-      <nav className="fixed top-0 w-full z-50 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-zinc-200/40">
+      <nav className="fixed top-7 w-full z-50 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-zinc-200/40">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-16 h-16 flex items-center justify-between">
           <KentaLogo className="w-24 h-auto text-[#2A2A2A]" />
 
@@ -396,7 +399,7 @@ export default function KentaPage() {
         </div>
       </nav>
 
-      <main className="pt-16">
+      <main className="pt-[92px]">
         <HeroSection />
         <ValueSection />
         <TestimonialSection />
