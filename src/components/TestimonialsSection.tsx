@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
               Prueba Social
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tighter mb-16" style={{ fontFamily: "var(--font-syne)" }}>
-              Lo que dicen mis <br /> <span className="text-vermilion">primeros clientes.</span>
+              Lo que dice <br /> <span className="text-vermilion">mi primer cliente.</span>
             </h2>
           </div>
         </ScrollReveal>
