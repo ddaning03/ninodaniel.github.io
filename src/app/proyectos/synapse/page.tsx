@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { JetBrains_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import ConceptBanner from "@/components/ConceptBanner";
 import { motion } from "framer-motion";
 
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "700"] });
@@ -93,7 +94,8 @@ export default function SynapseWaitlist() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-zinc-400 selection:bg-[#E63946] selection:text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-zinc-400 selection:bg-[#E63946] selection:text-white flex flex-col items-center justify-center p-4 md:p-8 pt-11 md:pt-[3.75rem] relative overflow-hidden">
+      <ConceptBanner />
       {/* Background Noise */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"

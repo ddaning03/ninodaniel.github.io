@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useFocusTrap } from "@/lib/useFocusTrap";
+import ConceptBanner from "@/components/ConceptBanner";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -392,8 +393,10 @@ export default function AustralPage() {
       className={`${serif.variable} ${mono.variable} min-h-screen antialiased selection:bg-[#C8A27A] selection:text-black`}
       style={{ backgroundColor: INK, color: BONE, fontFamily: "var(--font-inter), sans-serif" }}
     >
+      <ConceptBanner />
+
       {/* Nav */}
-      <nav className="fixed top-0 inset-x-0 z-50 mix-blend-difference text-white" aria-label="Navegación de Austral">
+      <nav className="fixed top-7 inset-x-0 z-50 mix-blend-difference text-white" aria-label="Navegación de Austral">
         <div className="max-w-[1500px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           <a href="#" className="text-2xl tracking-[0.3em] font-medium" style={S}>
             AUSTRAL
