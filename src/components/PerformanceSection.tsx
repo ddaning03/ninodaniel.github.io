@@ -1,11 +1,6 @@
 "use client";
 
 import ScrollReveal from "./ScrollReveal";
-import MagneticButton from "./MagneticButton";
-
-interface PerformanceSectionProps {
-  onAdsClick: () => void;
-}
 
 /* ─── Background SVG chart ─── */
 function BackgroundChart() {
@@ -126,9 +121,7 @@ function MetricCard({ label, value, desc, delay }: { label: string; value: strin
   );
 }
 
-export default function PerformanceSection({
-  onAdsClick,
-}: PerformanceSectionProps) {
+export default function PerformanceSection() {
   return (
     <section
       className="relative min-h-screen bg-dark-zinc text-white py-24 lg:py-32 flex flex-col justify-center border-b border-white/10 overflow-hidden"
@@ -168,17 +161,6 @@ export default function PerformanceSection({
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.45}>
-              <MagneticButton
-                className="inline-block cursor-pointer border-4 border-vermilion px-10 py-5 font-extrabold uppercase tracking-widest hover:bg-vermilion transition-all duration-300"
-                onClick={onAdsClick}
-                ariaLabel="Ver creativos y anuncios"
-              >
-                <span style={{ fontFamily: "var(--font-syne)" }}>
-                  ← VER CREATIVOS &amp; ADS
-                </span>
-              </MagneticButton>
-            </ScrollReveal>
           </div>
 
           {/* Right: Qué reviso */}
