@@ -100,7 +100,7 @@ export default function VoidPage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group border border-white/10">
                 <Image
                   src="/projects/void/1.png"
-                  alt="VOID Hoodie Drop 04"
+                  alt="Buzo con capucha negro de VOID, Drop 04, edición limitada de 100 piezas"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 opacity-90 saturate-50 group-hover:saturate-100"
                   sizes="(max-width: 768px) 100vw, 66vw"
@@ -167,7 +167,7 @@ export default function VoidPage() {
               <div className="relative w-full h-full bg-[#000] overflow-hidden group border border-white/10">
                 <Image
                   src="/projects/void/4.png"
-                  alt="Architecture Oversized Model"
+                  alt="Modelo con ropa oversized negra en un pasillo oscuro iluminado con neón rojo"
                   fill
                   className="object-cover object-top transition-transform duration-[2000ms] group-hover:scale-105 opacity-80"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -185,7 +185,7 @@ export default function VoidPage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group border border-white/10">
                 <Image
                   src="/projects/void/2.png"
-                  alt="Fabric Detail 500 GSM"
+                  alt="Detalle de la etiqueta roja de VOID sobre algodón grueso de 500 g/m²"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 grayscale group-hover:grayscale-0"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -208,7 +208,7 @@ export default function VoidPage() {
               <div className="relative w-full h-full bg-[#000] border border-white/10 overflow-hidden group">
                  <Image
                   src="/projects/void/3.png"
-                  alt="VOID Box available now"
+                  alt="Caja negra de mármol con el logo de VOID en rojo, con el texto Disponible ahora"
                   fill
                   className="object-cover object-center transition-transform duration-[3000ms] group-hover:scale-105 opacity-60 mix-blend-lighten"
                   sizes="100vw"

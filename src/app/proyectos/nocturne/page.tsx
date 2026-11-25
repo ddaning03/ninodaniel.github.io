@@ -98,7 +98,7 @@ export default function NocturnePage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group">
                 <Image
                   src="/projects/nocturne/interior.png"
-                  alt="Nocturne Interior"
+                  alt="Salón de Nocturne con paredes de hormigón, listones de madera y luz cálida"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 opacity-80"
                   sizes="(max-width: 768px) 100vw, 66vw"
@@ -154,7 +154,7 @@ export default function NocturnePage() {
               <div className="relative w-full h-full bg-[#111] overflow-hidden group">
                 <Image
                   src="/projects/nocturne/hero.png"
-                  alt="Omakase Dish"
+                  alt="Pieza de nigiri de otoro con hoja de oro sobre un plato de cerámica oscura"
                   fill
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 opacity-80"
                   sizes="(max-width: 768px) 100vw, 50vw"

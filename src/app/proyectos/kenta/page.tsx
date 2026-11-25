@@ -124,7 +124,7 @@ function HeroSection() {
               <div className="relative aspect-[4/5] max-w-[500px] mx-auto overflow-hidden">
                 <Image
                   src="/projects/kenta/hero.png"
-                  alt="KENTA Hydrating & Brightening Serum"
+                  alt="Frasco de sérum KENTA con gotero dorado sobre una piedra travertino"
                   fill
                   className="object-cover"
                   priority
