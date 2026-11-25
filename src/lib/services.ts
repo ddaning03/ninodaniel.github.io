@@ -24,9 +24,9 @@ export const services: Service[] = [
     ideal: "Sin nada digital todavía",
     features: [
       "Landing page de 1 sección",
-      "Google Business optimizado",
+      "Perfil de Empresa en Google optimizado",
       "Botón de WhatsApp integrado",
-      "Dominio .com.ar / Subdominio",
+      "Dominio .com.ar a tu nombre",
       "Hosting incluido por 1 año"
     ],
     cta: "Empezar Presencia"

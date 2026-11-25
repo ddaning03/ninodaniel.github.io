@@ -80,7 +80,7 @@ export default function ServicesSection() {
               </h2>
             </div>
             <p className="max-w-xs text-white/40 text-sm leading-relaxed">
-              Precios promocionales en los 3 planes, por tiempo limitado y a cambio de un testimonio para mi portfolio. Válido para negocios locales en Argentina.
+              Precios promocionales en los 3 planes, a cambio de un testimonio para mi portfolio. Válido para negocios locales en Argentina.
             </p>
           </div>
         </ScrollReveal>
