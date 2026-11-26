@@ -58,7 +58,7 @@ const demo: Demo = {
   instagram: "https://www.instagram.com/sacabollosradaelli/",
 
   color: "#A31515",
-  diseno: "editorial",
+  diseno: "garage",
   // Si se vuelve a la plantilla, estas dos opciones la dejan en oscuro y condensada:
   tema: "oscuro",
   fuente: "condensada",
