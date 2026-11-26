@@ -44,8 +44,8 @@ export type Demo = {
 
   /* ───────── Opcionales de diseño y contenido extra ───────── */
 
-  /** Diseño de la página: "plantilla" (por defecto) o "editorial" (ficha técnica, para talleres). */
-  diseno?: "plantilla" | "editorial";
+  /** Diseño: "plantilla" (por defecto), "editorial" (ficha técnica) o "garage" (logo slab, círculos rojos, hexágonos). */
+  diseno?: "plantilla" | "editorial" | "garage";
   /** "oscuro" para fondo negro con detalles en el color principal. Por defecto "claro". */
   tema?: "claro" | "oscuro";
   /** "condensada" usa una tipografía técnica y angosta para títulos. Por defecto la del sitio. */
