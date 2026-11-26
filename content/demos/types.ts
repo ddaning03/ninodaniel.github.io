@@ -46,6 +46,8 @@ export type Demo = {
 
   /** Diseño: "plantilla" (por defecto), "editorial" (ficha técnica) "garage" (logo slab, círculos rojos) o "estudio" (detailing moderno: luces hexagonales, vidrio, bento). */
   diseno?: "plantilla" | "editorial" | "garage" | "estudio";
+  /** Tipografía del diseño "estudio": "saira" (por defecto), "archivo" o "michroma". */
+  tipografia?: "saira" | "archivo" | "michroma";
   /** "oscuro" para fondo negro con detalles en el color principal. Por defecto "claro". */
   tema?: "claro" | "oscuro";
   /** "condensada" usa una tipografía técnica y angosta para títulos. Por defecto la del sitio. */

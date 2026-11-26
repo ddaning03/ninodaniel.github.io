@@ -59,6 +59,7 @@ const demo: Demo = {
 
   color: "#A31515",
   diseno: "estudio",
+  tipografia: "archivo",
   // Si se vuelve a la plantilla, estas dos opciones la dejan en oscuro y condensada:
   tema: "oscuro",
   fuente: "condensada",
