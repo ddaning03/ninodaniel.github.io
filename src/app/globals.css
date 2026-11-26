@@ -108,3 +108,17 @@ body {
   .circ-pulse { animation: none; stroke-dasharray: none; opacity: 0.35; }
   .wire-pulse { animation: none; background-image: none; }
 }
+
+/* ─── Luces de estado y térmicas (demo diseño "tablero") ─── */
+@keyframes tb-led {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.tb-led { animation: tb-led 2.6s ease-in-out infinite; }
+.tb-lever { transition: transform 0.25s cubic-bezier(.3,1.6,.5,1); }
+.tb-modulo:hover .tb-lever,
+.tb-modulo:focus-visible .tb-lever { transform: translateY(2px); }
+@media (prefers-reduced-motion: reduce) {
+  .tb-led { animation: none; }
+  .tb-lever { transition: none; }
+}
