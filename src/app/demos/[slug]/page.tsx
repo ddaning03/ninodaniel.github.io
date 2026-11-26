@@ -6,6 +6,7 @@ import { demos, type Demo } from "@content/demos";
 import EditorialTaller from "./EditorialTaller";
 import GarageTaller from "./GarageTaller";
 import EstudioTaller from "./EstudioTaller";
+import ConversionLocal from "./ConversionLocal";
 
 /* Tipografía técnica y angosta, para demos con fuente: "condensada" */
 const condensada = Barlow_Condensed({
@@ -159,6 +160,7 @@ export default async function DemoPage({ params }: { params: Promise<{ slug: str
   if (d.diseno === "editorial") return <EditorialTaller d={d} />;
   if (d.diseno === "garage") return <GarageTaller d={d} />;
   if (d.diseno === "estudio") return <EstudioTaller d={d} />;
+  if (d.diseno === "conversion") return <ConversionLocal d={d} />;
 
   const dark = d.tema === "oscuro";
   const t = THEMES[dark ? "oscuro" : "claro"];
