@@ -5,6 +5,7 @@ import { Barlow_Condensed } from "next/font/google";
 import { demos, type Demo } from "@content/demos";
 import EditorialTaller from "./EditorialTaller";
 import GarageTaller from "./GarageTaller";
+import EstudioTaller from "./EstudioTaller";
 
 /* Tipografía técnica y angosta, para demos con fuente: "condensada" */
 const condensada = Barlow_Condensed({
@@ -157,6 +158,7 @@ export default async function DemoPage({ params }: { params: Promise<{ slug: str
   /* Diseño propio para talleres (ficha técnica). El resto usa la plantilla. */
   if (d.diseno === "editorial") return <EditorialTaller d={d} />;
   if (d.diseno === "garage") return <GarageTaller d={d} />;
+  if (d.diseno === "estudio") return <EstudioTaller d={d} />;
 
   const dark = d.tema === "oscuro";
   const t = THEMES[dark ? "oscuro" : "claro"];
