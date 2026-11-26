@@ -72,3 +72,39 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .estudio-sweep { animation: none; opacity: 0; }
 }
+
+/* ─── Pulsos de corriente sobre pistas de circuito (demo diseño "circuito") ─── */
+@keyframes circ-pulse {
+  from { stroke-dashoffset: 10; }
+  to { stroke-dashoffset: -100; }
+}
+.circ-pulse {
+  stroke-dasharray: 10 190;
+  stroke-dashoffset: 10;
+  animation: circ-pulse 5s linear infinite;
+}
+@keyframes wire-pulse-y {
+  from { background-position: 0 -40%; }
+  to { background-position: 0 140%; }
+}
+@keyframes wire-pulse-x {
+  from { background-position: -40% 0; }
+  to { background-position: 140% 0; }
+}
+.wire-pulse {
+  background-image: linear-gradient(180deg, transparent, var(--wire), transparent);
+  background-size: 100% 30%;
+  background-repeat: no-repeat;
+  animation: wire-pulse-y 3.2s ease-in-out infinite;
+}
+@media (min-width: 640px) {
+  .wire-pulse {
+    background-image: linear-gradient(90deg, transparent, var(--wire), transparent);
+    background-size: 30% 100%;
+    animation-name: wire-pulse-x;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .circ-pulse { animation: none; stroke-dasharray: none; opacity: 0.35; }
+  .wire-pulse { animation: none; background-image: none; }
+}
