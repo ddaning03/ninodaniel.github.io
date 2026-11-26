@@ -10,8 +10,8 @@ import { MI_WHATSAPP, has, waLink, telLink, mapsSearch, readableOn } from "@/lib
  * Igual que la plantilla: solo muestra lo que está en el archivo de datos.
  */
 
-const display = Barlow_Condensed({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-ed-display" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-ed-mono" });
+const display = Barlow_Condensed({ subsets: ["latin"], preload: false, weight: ["500", "600", "700", "800"], variable: "--font-ed-display" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], preload: false, weight: ["400", "500"], variable: "--font-ed-mono" });
 
 const INK = "#0D0D0D";
 const PAPER = "#F1EEE8";

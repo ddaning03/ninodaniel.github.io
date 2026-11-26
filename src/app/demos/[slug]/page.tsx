@@ -9,7 +9,7 @@ import EstudioTaller from "./EstudioTaller";
 
 /* Tipografía técnica y angosta, para demos con fuente: "condensada" */
 const condensada = Barlow_Condensed({
-  subsets: ["latin"],
+  subsets: ["latin"], preload: false,
   weight: ["500", "600", "700"],
   variable: "--font-condensada",
 });
