@@ -12,22 +12,22 @@ import { MI_WHATSAPP, has, waLink, telLink, mapsSearch } from "@/lib/demo-utils"
  * Igual que la plantilla: solo muestra lo que está en el archivo de datos.
  */
 
-const display = Bricolage_Grotesque({ subsets: ["latin"], preload: false, weight: ["600", "700", "800"], variable: "--font-ci-display" });
+export const display = Bricolage_Grotesque({ subsets: ["latin"], preload: false, weight: ["600", "700", "800"], variable: "--font-ci-display" });
 
 const NAVY = "#0B1626";
 const MUTED = "#4A5361"; /* 7,9:1 sobre blanco */
 const BG = "#F2F4F7";
-const D: React.CSSProperties = { fontFamily: "var(--font-ci-display), var(--font-inter), sans-serif" };
+export const D: React.CSSProperties = { fontFamily: "var(--font-ci-display), var(--font-inter), sans-serif" };
 
 /* ─────────── Íconos lineales (símbolos eléctricos) ─────────── */
-function Svg({ children, className = "w-7 h-7" }: { children: React.ReactNode; className?: string }) {
+export function Svg({ children, className = "w-7 h-7" }: { children: React.ReactNode; className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {children}
     </svg>
   );
 }
-const icons = {
+export const icons = {
   rayo: <path d="M13 2 4 14h7l-1 8 9-12h-7z" />,
   llave: <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a2 2 0 0 0 3 3l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.6-.6-.6-2.6z" />,
   lampara: (<><path d="M9 18h6M10 21h4" /><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.1v.1h5v-.1c0-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z" /></>),
@@ -40,7 +40,7 @@ const icons = {
   mail: (<><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3.5 6.5 8.5 6 8.5-6" /></>),
   flecha: <path d="M7 17 17 7M8 7h9v9" />,
 };
-function iconFor(nombre: string) {
+export function iconFor(nombre: string) {
   const n = nombre.toLowerCase();
   if (n.includes("mantenim")) return icons.llave;
   if (n.includes("artefact") || n.includes("montaje")) return icons.lampara;
@@ -50,7 +50,7 @@ function iconFor(nombre: string) {
   if (n.includes("ventilad")) return icons.ventilador;
   return icons.rayo;
 }
-function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
+export function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.001 12.045c0 2.12.554 4.189 1.602 6.006L0 24l6.132-1.61c1.742.951 3.71 1.453 5.712 1.454h.005c6.635 0 12.043-5.411 12.047-12.046a11.812 11.812 0 00-3.29-8.412" />
