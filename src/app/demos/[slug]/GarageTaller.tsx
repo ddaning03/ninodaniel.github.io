@@ -11,8 +11,8 @@ import { MI_WHATSAPP, has, waLink, telLink, mapsSearch } from "@/lib/demo-utils"
  * Igual que la plantilla: solo muestra lo que está en el archivo de datos.
  */
 
-const slab = Alfa_Slab_One({ subsets: ["latin"], weight: "400", variable: "--font-gr-slab" });
-const sans = Archivo({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-gr-sans" });
+const slab = Alfa_Slab_One({ subsets: ["latin"], preload: false, weight: "400", variable: "--font-gr-slab" });
+const sans = Archivo({ subsets: ["latin"], preload: false, weight: ["400", "500", "600", "700", "800"], variable: "--font-gr-sans" });
 
 const BLACK = "#121212";
 const SLAB = { fontFamily: "var(--font-gr-slab), Georgia, serif" };

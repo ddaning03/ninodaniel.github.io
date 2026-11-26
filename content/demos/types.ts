@@ -45,7 +45,7 @@ export type Demo = {
   /* ───────── Opcionales de diseño y contenido extra ───────── */
 
   /** Diseño: "plantilla" (por defecto), "editorial" (ficha técnica) "garage" (logo slab, círculos rojos) o "estudio" (detailing moderno: luces hexagonales, vidrio, bento). */
-  diseno?: "plantilla" | "editorial" | "garage" | "estudio";
+  diseno?: "plantilla" | "editorial" | "garage" | "estudio" | "conversion";
   /** Tipografía del diseño "estudio": "saira" (por defecto), "archivo" o "michroma". */
   tipografia?: "saira" | "archivo" | "michroma";
   /** "oscuro" para fondo negro con detalles en el color principal. Por defecto "claro". */
@@ -77,4 +77,15 @@ export type Demo = {
   cierre?: string;
   /** Link al perfil de Instagram. Si está, el pie muestra links a Instagram y WhatsApp. */
   instagram?: string;
+
+  /* ───────── Opcionales del diseño "conversion" (landings para anuncios) ───────── */
+
+  /** Titular del hero, por ejemplo "Electricistas en CABA desde 2006". */
+  titular?: string;
+  /** Línea debajo del titular con la especialidad. */
+  bajada?: string;
+  /** Email de contacto. */
+  email?: string;
+  /** "Por qué elegirnos": puntos basados solo en datos confirmados. */
+  razones?: { titulo: string; texto: string }[];
 };

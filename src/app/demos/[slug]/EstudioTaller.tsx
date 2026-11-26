@@ -12,11 +12,11 @@ import { MI_WHATSAPP, has, waLink, telLink, mapsSearch } from "@/lib/demo-utils"
  */
 
 /* ─────────── Tipografías (se descarga solo la que usa la demo) ─────────── */
-const saira = Saira({ subsets: ["latin"], weight: "variable", axes: ["wdth"], variable: "--font-es-saira" });
-const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-es-figtree" });
-const archivo = Archivo({ subsets: ["latin"], weight: "variable", axes: ["wdth"], variable: "--font-es-archivo" });
-const michroma = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-es-michroma" });
-const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-es-dmsans" });
+const saira = Saira({ subsets: ["latin"], preload: false, weight: "variable", axes: ["wdth"], variable: "--font-es-saira" });
+const figtree = Figtree({ subsets: ["latin"], preload: false, weight: ["400", "500", "600", "700"], variable: "--font-es-figtree" });
+const archivo = Archivo({ subsets: ["latin"], preload: false, weight: "variable", axes: ["wdth"], variable: "--font-es-archivo" });
+const michroma = Michroma({ subsets: ["latin"], preload: false, weight: "400", variable: "--font-es-michroma" });
+const dmSans = DM_Sans({ subsets: ["latin"], preload: false, weight: ["400", "500", "600", "700"], variable: "--font-es-dmsans" });
 
 const TYPE = {
   saira: {
