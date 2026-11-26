@@ -2,7 +2,7 @@ import type { Demo } from "./types";
 
 /*
  * Prospecto: Módulo Técnico · Proyectos Eléctricos.
- * Landing para tráfico de Google Ads (diseño "conversion").
+ * Landing para tráfico de Google Ads (diseño "circuito").
  * Solo datos confirmados por Daniel. No hay reseñas de Google cargadas: la sección no se muestra.
  */
 const demo: Demo = {
@@ -50,7 +50,7 @@ const demo: Demo = {
   cierre: "¿Necesitás un electricista?",
 
   color: "#FFB81C",
-  diseno: "conversion",
+  diseno: "circuito",
 };
 
 export default demo;

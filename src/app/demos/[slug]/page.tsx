@@ -7,6 +7,7 @@ import EditorialTaller from "./EditorialTaller";
 import GarageTaller from "./GarageTaller";
 import EstudioTaller from "./EstudioTaller";
 import ConversionLocal from "./ConversionLocal";
+import CircuitoElectrico from "./CircuitoElectrico";
 
 /* Tipografía técnica y angosta, para demos con fuente: "condensada" */
 const condensada = Barlow_Condensed({
@@ -161,6 +162,7 @@ export default async function DemoPage({ params }: { params: Promise<{ slug: str
   if (d.diseno === "garage") return <GarageTaller d={d} />;
   if (d.diseno === "estudio") return <EstudioTaller d={d} />;
   if (d.diseno === "conversion") return <ConversionLocal d={d} />;
+  if (d.diseno === "circuito") return <CircuitoElectrico d={d} />;
 
   const dark = d.tema === "oscuro";
   const t = THEMES[dark ? "oscuro" : "claro"];
