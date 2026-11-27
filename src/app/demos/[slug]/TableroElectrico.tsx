@@ -189,6 +189,33 @@ function FichaUbicacion({ d, accent, mapQ }: { d: Demo; accent: string; mapQ: st
   );
 }
 
+/* ─────────── Canaleta con cables: llena el lado del gabinete que se va de pantalla ─────────── */
+function Canaleta() {
+  const cables = [
+    ["#FFB81C", "M0 120 C 70 120 60 60 120 60"],
+    ["#3B82F6", "M0 380 C 80 380 70 300 135 300"],
+    ["#E5484D", "M0 640 C 75 640 65 560 120 560"],
+    ["#34D399", "M0 880 C 80 880 70 800 135 800"],
+  ];
+  return (
+    <div className="pointer-events-none absolute inset-y-0 right-0 hidden lg:block" style={{ width: "max(0px, calc((100vw - 72rem) / 2))" }} aria-hidden="true">
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 200 1000" preserveAspectRatio="none" fill="none">
+        {cables.map(([c, d]) => (
+          <path key={c} d={d} stroke={c} strokeWidth="5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+        ))}
+      </svg>
+      {/* Canaleta ranurada vertical */}
+      <div
+        className="absolute inset-y-6 left-[60%] w-14 rounded-xl"
+        style={{
+          background: "repeating-linear-gradient(180deg,#9AA6B6 0 18px,#5D6878 18px 22px)",
+          boxShadow: "inset 0 2px 0 rgba(255,255,255,.35), 0 10px 24px rgba(0,0,0,.45)",
+        }}
+      />
+    </div>
+  );
+}
+
 /* ─────────── Diseño ─────────── */
 export default function TableroElectrico({ d }: { d: Demo }) {
   const accent = d.color;
@@ -289,8 +316,9 @@ export default function TableroElectrico({ d }: { d: Demo }) {
             )}
           </div>
           {/* El tablero se corta contra el borde derecho de la pantalla */}
-          <div className="relative mt-16 pl-8 -mr-[28%] sm:-mr-[12%] lg:mt-6 lg:pl-6 lg:-mr-[14%]">
+          <div className="relative mt-16 pl-8 -mr-[28%] sm:-mr-[12%] lg:mt-6 lg:mr-0 lg:pl-0 lg:pr-[max(0rem,calc((100vw-72rem)/2-2.5rem))]"><div className="lg:ml-auto lg:w-[min(560px,44vw)]">
             <TableroHero accent={accent} marca={short} n={servicios.length || 6} chips={chips} />
+            </div>
           </div>
         </section>
       </div>
@@ -298,7 +326,7 @@ export default function TableroElectrico({ d }: { d: Demo }) {
       <main>
         {/* ═══════════ SERVICIOS: columna fija a la izquierda, gabinete pegado al borde derecho ═══════════ */}
         {servicios.length > 0 && (
-          <section className="relative grid gap-10 pb-20 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-12 lg:pb-28" aria-labelledby="servicios">
+          <section className="relative grid gap-10 pb-20 lg:grid-cols-[calc(max(1.5rem,calc((100vw-72rem)/2+1.5rem))+21rem)_minmax(0,1fr)] lg:gap-12 lg:pb-28" aria-labelledby="servicios">
             <div className={`${ALIGN_L} pr-4 lg:pr-0`}>
               <div className="lg:sticky lg:top-20">
                 <span
@@ -316,7 +344,7 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                 )}
                 {wa && (
                   <div className="mt-7 hidden lg:block">
-                    <a href={wa} target="_blank" rel="noopener noreferrer" data-origen="servicios-otro" className={tecla} style={TECLA_NAVY}>
+                    <a href={wa} target="_blank" rel="noopener noreferrer" data-origen="servicios-otro" className={`${tecla} whitespace-nowrap`} style={TECLA_NAVY}>
                       <WhatsAppIcon className="w-5 h-5" /> Consultar otro trabajo
                     </a>
                   </div>
@@ -327,15 +355,16 @@ export default function TableroElectrico({ d }: { d: Demo }) {
             {/* Gabinete: abierto hacia el borde derecho */}
             <div className="pl-3 sm:pl-6 lg:pl-0">
               <div className="rounded-l-[34px] py-2.5 pl-2.5 sm:py-4 sm:pl-4" style={METAL}>
-                <div className={`rounded-l-[26px] py-3 pl-3 pr-3 sm:py-6 sm:pl-6 sm:pr-6 ${ALIGN_R}`} style={FONDO_TABLERO}>
-                  <div className="flex items-center justify-between px-1 pb-4 sm:pb-6">
+                <div className={`relative overflow-hidden rounded-l-[26px] py-3 pl-3 pr-3 sm:py-6 sm:pl-6 sm:pr-6 ${ALIGN_R}`} style={FONDO_TABLERO}>
+                  <Canaleta />
+                  <div className="relative flex items-center justify-between px-1 pb-4 sm:pb-6">
                     <span className="text-sm font-bold text-white/80" style={D}>Tablero de servicios</span>
                     <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
                       <span className="tb-led h-2 w-2 rounded-full bg-emerald-400" style={{ boxShadow: "0 0 10px #34D399" }} />
                       {servicios.length} circuitos
                     </span>
                   </div>
-                  <ul className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+                  <ul className="relative grid gap-2.5 sm:grid-cols-2 sm:gap-3">
                     {servicios.map((s, i) => {
                       const href = d.whatsappPorServicio && d.whatsapp ? waLink(d.whatsapp, `Hola, quiero consultar por ${s.nombre.toLowerCase()}`) : wa;
                       const contenido = (
@@ -362,7 +391,7 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                         </>
                       );
                       return (
-                        <li key={s.nombre} className={`flex ${i % 2 ? "sm:translate-y-6" : ""}`}>
+                        <li key={s.nombre} className="flex">
                           {href ? (
                             <a
                               href={href}
@@ -382,7 +411,6 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                       );
                     })}
                   </ul>
-                  <div className="hidden sm:block h-6" />
                 </div>
               </div>
             </div>
