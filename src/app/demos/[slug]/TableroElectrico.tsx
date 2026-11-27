@@ -64,7 +64,7 @@ function Termica({ accent, small = false, delay = 0 }: { accent: string; small?:
 function TableroHero({ accent, marca, n, chips }: { accent: string; marca: string; n: number; chips: string[] }) {
   const filas = [Array.from({ length: Math.min(n, 6) }), Array.from({ length: 3 })];
   return (
-    <div className="relative mx-auto w-full max-w-[560px] [perspective:1800px]">
+    <div className="relative w-full max-w-[600px] lg:max-w-none [perspective:1800px]">
       {/* Halo cálido detrás del tablero */}
       <div className="pointer-events-none absolute -inset-10 rounded-full blur-3xl" style={{ background: `radial-gradient(closest-side, ${accent}55, transparent)` }} aria-hidden="true" />
       <div className="relative rounded-[30px] p-3.5 sm:p-4 lg:[transform:rotateY(-16deg)_rotateX(7deg)_rotateZ(1deg)]" style={METAL} aria-hidden="true">
@@ -109,7 +109,7 @@ function TableroHero({ accent, marca, n, chips }: { accent: string; marca: strin
       </div>
       {/* Etiquetas flotantes (datos del archivo) */}
       {chips[0] && (
-        <span className="absolute -top-5 right-6 sm:right-10 rounded-2xl px-4 py-2.5 text-sm font-extrabold" style={{ ...D, ...teclaAmarilla(accent), boxShadow: `inset 0 1px 0 rgba(255,255,255,.7), 0 20px 30px -12px rgba(185,127,0,.7)` }}>
+        <span className="absolute -top-5 left-10 sm:left-14 rounded-2xl px-4 py-2.5 text-sm font-extrabold" style={{ ...D, ...teclaAmarilla(accent), boxShadow: `inset 0 1px 0 rgba(255,255,255,.7), 0 20px 30px -12px rgba(185,127,0,.7)` }}>
           {chips[0]}
         </span>
       )}
@@ -119,7 +119,7 @@ function TableroHero({ accent, marca, n, chips }: { accent: string; marca: strin
         </span>
       )}
       {chips[2] && (
-        <span className="absolute -bottom-5 right-6 sm:right-12 flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-bold text-white" style={{ ...D, ...TECLA_NAVY, boxShadow: "0 20px 34px -14px rgba(11,22,38,.7)" }}>
+        <span className="absolute -bottom-5 left-[38%] flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-bold text-white" style={{ ...D, ...TECLA_NAVY, boxShadow: "0 20px 34px -14px rgba(11,22,38,.7)" }}>
           <span className="h-2 w-2 rounded-full bg-emerald-400" style={{ boxShadow: "0 0 8px #34D399" }} />
           {chips[2]}
         </span>
@@ -155,6 +155,40 @@ function Titulo({ id, children, claro = false }: { id: string; children: React.R
   );
 }
 
+/* Alineación con la grilla de 72rem, dejando que el otro lado llegue al borde de la pantalla */
+const ALIGN_L = "pl-4 sm:pl-6 lg:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]";
+const ALIGN_R = "pr-4 sm:pr-6 lg:pr-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]";
+
+/* ─────────── Ficha de ubicación ─────────── */
+function FichaUbicacion({ d, accent, mapQ }: { d: Demo; accent: string; mapQ: string }) {
+  return (
+    <>
+      <span className="grid h-11 w-11 place-items-center rounded-2xl" style={teclaAmarilla(accent)}>
+        <Svg className="w-5 h-5">{icons.pin}</Svg>
+      </span>
+      {d.direccion && <p className="mt-4 text-2xl font-bold leading-tight tracking-[-0.02em]" style={D}>{d.direccion}</p>}
+      {has(d.horarios) && (
+        <dl className="mt-3 text-[15px]">
+          {d.horarios.map((h) => (
+            <div key={h.dias} className="flex justify-between gap-4 border-b border-black/10 py-2">
+              <dt style={{ color: MUTED }}>{h.dias}</dt>
+              <dd className="font-semibold">{h.horas}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {d.email && (
+        <a href={`mailto:${d.email}`} className="mt-3 flex items-center gap-2 text-[14.5px] font-semibold hover:underline" style={{ color: MUTED }}>
+          <Svg className="w-4 h-4 shrink-0">{icons.mail}</Svg> <span className="min-w-0">{d.email.replace("@", "@\u200b")}</span>
+        </a>
+      )}
+      <a href={mapsSearch(mapQ)} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-[15px] font-bold" style={TECLA_NAVY}>
+        Cómo llegar <Svg className="w-4 h-4">{icons.flecha}</Svg>
+      </a>
+    </>
+  );
+}
+
 /* ─────────── Diseño ─────────── */
 export default function TableroElectrico({ d }: { d: Demo }) {
   const accent = d.color;
@@ -180,7 +214,7 @@ export default function TableroElectrico({ d }: { d: Demo }) {
     <div className={`${display.variable} min-h-screen overflow-x-clip antialiased pb-24 sm:pb-0`} style={{ backgroundColor: BG, color: NAVY, fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
       {/* Franja: propuesta de diseño */}
       <div className="fixed top-0 inset-x-0 z-50 bg-[#0B1626] text-[11px] sm:text-xs text-white/75">
-        <p className="px-4 py-1.5 text-center">
+        <p className={`py-1.5 ${ALIGN_L} ${ALIGN_R}`}>
           {d.ejemplo && <strong className="text-amber-300 font-semibold">Ejemplo con datos ficticios · </strong>}
           Propuesta de diseño para {short} · por{" "}
           <a href={propuesta} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2">
@@ -189,21 +223,20 @@ export default function TableroElectrico({ d }: { d: Demo }) {
         </p>
       </div>
 
-      {/* ═══════════ HERO ═══════════ */}
+      {/* ═══════════ HERO: texto a la izquierda, tablero que se sale por la derecha ═══════════ */}
       <div className="relative pt-7">
-        {/* Fondo con volumen: brillo cálido + frío y retícula que se desvanece */}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: `radial-gradient(55% 45% at 88% 18%, ${accent}40, transparent 70%), radial-gradient(45% 40% at 0% 0%, rgba(59,130,246,.16), transparent 70%), linear-gradient(180deg,#F7F8FA, ${BG})` }}
+          style={{ background: `radial-gradient(50% 55% at 95% 40%, ${accent}45, transparent 70%), radial-gradient(40% 40% at 0% 0%, rgba(59,130,246,.15), transparent 70%), linear-gradient(180deg,#F7F8FA, ${BG})` }}
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(70%_60%_at_60%_30%,#000,transparent)]"
+          className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(60%_60%_at_75%_40%,#000,transparent)]"
           style={{ backgroundImage: "linear-gradient(rgba(11,22,38,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(11,22,38,.06) 1px,transparent 1px)", backgroundSize: "44px 44px" }}
           aria-hidden="true"
         />
 
-        <header className="relative mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 py-3.5">
+        <header className={`relative flex items-center justify-between py-3.5 ${ALIGN_L} ${ALIGN_R}`}>
           <p className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 place-items-center rounded-xl" style={teclaAmarilla(accent)}>
               <Svg className="w-5 h-5">{icons.rayo}</Svg>
@@ -221,10 +254,10 @@ export default function TableroElectrico({ d }: { d: Demo }) {
           )}
         </header>
 
-        <section className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 pt-4 pb-20 lg:grid-cols-[1fr_1fr] lg:gap-14 lg:pt-12 lg:pb-28" aria-label="Presentación">
-          <div>
+        <section className="relative grid items-center pb-16 lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] lg:pb-24" aria-label="Presentación">
+          <div className={`${ALIGN_L} pr-4 sm:pr-6 pt-4 lg:pt-14`}>
             <p className="text-[15px] font-semibold" style={{ color: MUTED }}>{d.rubro}</p>
-            <h1 className="mt-3 text-[2.75rem] leading-[0.95] sm:text-7xl lg:text-[5.4rem] font-extrabold tracking-[-0.045em]" style={D}>
+            <h1 className="mt-3 text-[2.75rem] leading-[0.95] sm:text-7xl lg:text-[5.6rem] font-extrabold tracking-[-0.045em]" style={D}>
               {antes}
               {m && (
                 <span className="relative inline-block whitespace-nowrap">
@@ -249,28 +282,52 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                 )}
               </div>
             )}
+            {d.direccion && (
+              <a href="#ubicacion" className="mt-8 inline-flex items-center gap-2 text-[15px] font-semibold hover:underline" style={{ color: MUTED }}>
+                <Svg className="w-4 h-4">{icons.pin}</Svg> {d.direccion}
+              </a>
+            )}
           </div>
-          <TableroHero accent={accent} marca={short} n={servicios.length || 6} chips={chips} />
+          {/* El tablero se corta contra el borde derecho de la pantalla */}
+          <div className="relative mt-16 pl-8 -mr-[28%] sm:-mr-[12%] lg:mt-6 lg:pl-6 lg:-mr-[14%]">
+            <TableroHero accent={accent} marca={short} n={servicios.length || 6} chips={chips} />
+          </div>
         </section>
       </div>
 
       <main>
-        {/* ═══════════ SERVICIOS: las térmicas del tablero ═══════════ */}
+        {/* ═══════════ SERVICIOS: columna fija a la izquierda, gabinete pegado al borde derecho ═══════════ */}
         {servicios.length > 0 && (
-          <section className="relative px-3 sm:px-6 pb-20 sm:pb-28" aria-labelledby="servicios">
-            <div className="mx-auto max-w-6xl">
-              <div className="flex flex-col gap-3 px-1 sm:flex-row sm:items-end sm:justify-between">
-                <Titulo id="servicios">Elegí tu servicio</Titulo>
+          <section className="relative grid gap-10 pb-20 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-12 lg:pb-28" aria-labelledby="servicios">
+            <div className={`${ALIGN_L} pr-4 lg:pr-0`}>
+              <div className="lg:sticky lg:top-20">
+                <span
+                  className="block text-[6.5rem] lg:text-[10rem] font-extrabold leading-[0.85] tracking-[-0.06em] tabular-nums"
+                  style={{ ...D, color: "transparent", WebkitTextStroke: `2px ${NAVY}26`, backgroundImage: `linear-gradient(180deg, ${accent}, ${accent}00 85%)`, WebkitBackgroundClip: "text", backgroundClip: "text" }}
+                  aria-hidden="true"
+                >
+                  {String(servicios.length).padStart(2, "0")}
+                </span>
+                <div className="mt-2"><Titulo id="servicios">Elegí tu servicio</Titulo></div>
                 {d.whatsappPorServicio && (
-                  <p className="max-w-xs text-[15px] leading-snug" style={{ color: MUTED }}>
+                  <p className="mt-4 max-w-xs text-[16px] leading-snug" style={{ color: MUTED }}>
                     Tocá uno y se abre WhatsApp con tu consulta ya escrita.
                   </p>
                 )}
+                {wa && (
+                  <div className="mt-7 hidden lg:block">
+                    <a href={wa} target="_blank" rel="noopener noreferrer" data-origen="servicios-otro" className={tecla} style={TECLA_NAVY}>
+                      <WhatsAppIcon className="w-5 h-5" /> Consultar otro trabajo
+                    </a>
+                  </div>
+                )}
               </div>
+            </div>
 
-              {/* Gabinete */}
-              <div className="mt-9 rounded-[34px] p-2.5 sm:p-4" style={METAL}>
-                <div className="rounded-[26px] p-3 sm:p-6" style={FONDO_TABLERO}>
+            {/* Gabinete: abierto hacia el borde derecho */}
+            <div className="pl-3 sm:pl-6 lg:pl-0">
+              <div className="rounded-l-[34px] py-2.5 pl-2.5 sm:py-4 sm:pl-4" style={METAL}>
+                <div className={`rounded-l-[26px] py-3 pl-3 pr-3 sm:py-6 sm:pl-6 sm:pr-6 ${ALIGN_R}`} style={FONDO_TABLERO}>
                   <div className="flex items-center justify-between px-1 pb-4 sm:pb-6">
                     <span className="text-sm font-bold text-white/80" style={D}>Tablero de servicios</span>
                     <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
@@ -278,21 +335,21 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                       {servicios.length} circuitos
                     </span>
                   </div>
-                  <ul className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-3">
+                  <ul className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
                     {servicios.map((s, i) => {
                       const href = d.whatsappPorServicio && d.whatsapp ? waLink(d.whatsapp, `Hola, quiero consultar por ${s.nombre.toLowerCase()}`) : wa;
                       const contenido = (
                         <>
-                          <div className="flex items-start gap-4 sm:flex-col sm:gap-5">
-                            <div className="flex items-center gap-3">
-                              <Termica accent={accent} delay={i * 0.41} />
-                              <span className="hidden sm:grid h-12 w-12 place-items-center rounded-2xl" style={TECLA_NAVY}>
-                                <span style={{ color: accent }}><Svg className="w-6 h-6">{iconFor(s.nombre)}</Svg></span>
-                              </span>
-                            </div>
+                          <div className="flex items-start gap-4">
+                            <Termica accent={accent} delay={i * 0.41} />
                             <div className="min-w-0 flex-1">
-                              <span className="text-xs font-bold tabular-nums" style={{ color: MUTED }}>Circuito {String(i + 1).padStart(2, "0")}</span>
-                              <h3 className="mt-1 text-[1.2rem] sm:text-[1.35rem] font-bold leading-[1.12] tracking-[-0.02em]" style={D}>{s.nombre}</h3>
+                              <span className="flex items-center justify-between gap-2">
+                                <span className="text-xs font-bold tabular-nums" style={{ color: MUTED }}>Circuito {String(i + 1).padStart(2, "0")}</span>
+                                <span className="grid h-9 w-9 place-items-center rounded-xl" style={TECLA_NAVY}>
+                                  <span style={{ color: accent }}><Svg className="w-5 h-5">{iconFor(s.nombre)}</Svg></span>
+                                </span>
+                              </span>
+                              <h3 className="mt-1 text-[1.2rem] sm:text-[1.3rem] font-bold leading-[1.12] tracking-[-0.02em]" style={D}>{s.nombre}</h3>
                               {s.detalle && <p className="mt-1.5 text-[14.5px] leading-relaxed" style={{ color: MUTED }}>{s.detalle}</p>}
                             </div>
                           </div>
@@ -305,7 +362,7 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                         </>
                       );
                       return (
-                        <li key={s.nombre} className="flex">
+                        <li key={s.nombre} className={`flex ${i % 2 ? "sm:translate-y-6" : ""}`}>
                           {href ? (
                             <a
                               href={href}
@@ -325,138 +382,120 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                       );
                     })}
                   </ul>
+                  <div className="hidden sm:block h-6" />
                 </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* ═══════════ POR QUÉ ELEGIRNOS: tarjetas escalonadas sobre el año ═══════════ */}
+        {/* ═══════════ POR QUÉ ELEGIRNOS: año gigante cortado a la izquierda, razones en escalera ═══════════ */}
         {has(d.razones) && (
-          <section className="relative overflow-hidden px-4 sm:px-6 py-20 sm:py-28 text-white" style={{ background: `radial-gradient(70% 60% at 85% 0%, ${accent}33, transparent 60%), linear-gradient(180deg,#13233A,${NAVY})` }} aria-labelledby="razones">
-            {d.desde && (
-              <span
-                className="pointer-events-none absolute -bottom-[0.18em] right-[-0.04em] select-none text-[38vw] lg:text-[26rem] font-extrabold leading-none tracking-[-0.06em]"
-                style={{ ...D, color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,.08)", backgroundImage: `linear-gradient(180deg, ${accent}2E, transparent 75%)`, WebkitBackgroundClip: "text", backgroundClip: "text" }}
-                aria-hidden="true"
-              >
-                {d.desde}
-              </span>
-            )}
-            <div className="relative mx-auto max-w-6xl">
-              <Titulo id="razones" claro>Por qué elegirnos</Titulo>
-              <ol className="mt-12 grid gap-4 lg:grid-cols-3 lg:gap-5">
-                {d.razones.map((r, i) => (
-                  <li
-                    key={r.titulo}
-                    className={`rounded-[26px] p-6 sm:p-8 backdrop-blur-md ring-1 ring-white/15 ${["", "lg:translate-y-10", "lg:translate-y-20"][i % 3]}`}
-                    style={{ background: "linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04))", boxShadow: "0 30px 60px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.2)" }}
-                  >
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl text-lg font-extrabold" style={{ ...D, ...teclaAmarilla(accent) }}>
-                      {i + 1}
-                    </span>
-                    <h3 className="mt-6 text-2xl font-bold tracking-[-0.02em]" style={D}>{r.titulo}</h3>
-                    <p className="mt-2 text-[15.5px] leading-relaxed text-white/80">{r.texto}</p>
-                  </li>
-                ))}
-              </ol>
-              <div className="h-0 lg:h-20" />
+          <section className="relative overflow-hidden py-20 text-white lg:py-28" style={{ background: `radial-gradient(60% 70% at 0% 100%, ${accent}30, transparent 60%), linear-gradient(180deg,#13233A,${NAVY})` }} aria-labelledby="razones">
+            <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">
+              {d.desde && (
+                <span
+                  className="order-last -ml-[0.08em] block select-none text-[44vw] font-extrabold leading-[0.78] tracking-[-0.07em] lg:order-first lg:text-[15rem] xl:text-[16.5rem]"
+                  style={{ ...D, color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,.10)", backgroundImage: `linear-gradient(180deg, ${accent}, ${accent}10 90%)`, WebkitBackgroundClip: "text", backgroundClip: "text" }}
+                  aria-hidden="true"
+                >
+                  {d.desde}
+                </span>
+              )}
+              <div className={`${ALIGN_R} pl-4 sm:pl-6 lg:pl-0`}>
+                <Titulo id="razones" claro>Por qué elegirnos</Titulo>
+                <ol className="mt-10 space-y-4">
+                  {d.razones.map((r, i) => (
+                    <li
+                      key={r.titulo}
+                      className={`flex items-start gap-5 rounded-[24px] p-5 sm:p-6 backdrop-blur-md ring-1 ring-white/15 ${["", "lg:ml-14", "lg:ml-28"][i % 3]}`}
+                      style={{ background: "linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04))", boxShadow: "0 30px 60px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.2)" }}
+                    >
+                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-lg font-extrabold" style={{ ...D, ...teclaAmarilla(accent) }}>
+                        {i + 1}
+                      </span>
+                      <span>
+                        <h3 className="text-xl sm:text-2xl font-bold tracking-[-0.02em]" style={D}>{r.titulo}</h3>
+                        <p className="mt-1.5 text-[15.5px] leading-relaxed text-white/80">{r.texto}</p>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </section>
         )}
 
         {/* ═══════════ TRABAJOS (solo con fotos reales) ═══════════ */}
         {has(d.fotos) && (
-          <section className="px-4 sm:px-6 pt-20 sm:pt-28" aria-labelledby="trabajos">
-            <div className="mx-auto max-w-6xl">
-              <Titulo id="trabajos">Algunos trabajos</Titulo>
-              <ul className="mt-9 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                {d.fotos.map((f, i) => (
-                  <li key={f.src} className={`relative aspect-[4/5] overflow-hidden rounded-[22px] shadow-[0_24px_40px_-24px_rgba(11,22,38,.6)] ${i % 2 ? "lg:translate-y-8" : ""}`}>
-                    <Image src={f.src} alt={f.alt} fill sizes="(max-width: 1024px) 50vw, 280px" className="object-cover" />
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <section className={`pt-20 sm:pt-28 ${ALIGN_L} ${ALIGN_R}`} aria-labelledby="trabajos">
+            <Titulo id="trabajos">Algunos trabajos</Titulo>
+            <ul className="mt-9 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {d.fotos.map((f, i) => (
+                <li key={f.src} className={`relative aspect-[4/5] overflow-hidden rounded-[22px] shadow-[0_24px_40px_-24px_rgba(11,22,38,.6)] ${i % 2 ? "lg:translate-y-8" : ""}`}>
+                  <Image src={f.src} alt={f.alt} fill sizes="(max-width: 1024px) 50vw, 280px" className="object-cover" />
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 
         {/* ═══════════ RESEÑAS (solo con datos reales) ═══════════ */}
         {(d.google || has(d.resenas)) && (
-          <section className="px-4 sm:px-6 pt-20 sm:pt-28" aria-labelledby="resenas">
-            <div className="mx-auto max-w-6xl">
-              <Titulo id="resenas">{d.google ? `${d.google.puntaje.toString().replace(".", ",")} de 5 en Google` : "Lo que dicen"}</Titulo>
-              {has(d.resenas) && (
-                <ul className="mt-9 grid gap-4 sm:grid-cols-3">
-                  {d.resenas.map((r, i) => (
-                    <li key={i} className="rounded-[24px] bg-white p-6 shadow-[0_24px_40px_-28px_rgba(11,22,38,.5)]">
-                      <p className="leading-relaxed">“{r.texto}”</p>
-                      <p className="mt-3 text-sm font-semibold" style={{ color: MUTED }}>{r.autor}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+          <section className={`pt-20 sm:pt-28 ${ALIGN_L} ${ALIGN_R}`} aria-labelledby="resenas">
+            <Titulo id="resenas">{d.google ? `${d.google.puntaje.toString().replace(".", ",")} de 5 en Google` : "Lo que dicen"}</Titulo>
+            {has(d.resenas) && (
+              <ul className="mt-9 grid gap-4 sm:grid-cols-3">
+                {d.resenas.map((r, i) => (
+                  <li key={i} className="rounded-[24px] bg-white p-6 shadow-[0_24px_40px_-28px_rgba(11,22,38,.5)]">
+                    <p className="leading-relaxed">“{r.texto}”</p>
+                    <p className="mt-3 text-sm font-semibold" style={{ color: MUTED }}>{r.autor}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
         )}
 
-        {/* ═══════════ UBICACIÓN: mapa grande con tarjeta flotante ═══════════ */}
+        {/* ═══════════ UBICACIÓN: mapa pegado al borde izquierdo, ficha que se monta encima ═══════════ */}
         {mapQ && (
-          <section id="ubicacion" className="px-3 sm:px-6 pt-20 sm:pt-28" aria-labelledby="ubicacion-titulo">
-            <div className="mx-auto max-w-6xl">
-              <div className="px-1"><Titulo id="ubicacion-titulo">Dónde estamos</Titulo></div>
-              <div className="relative mt-9">
-                <div className="relative h-[320px] sm:h-[460px] overflow-hidden rounded-[32px] bg-[#DCE2E9]" style={{ boxShadow: "0 40px 70px -40px rgba(11,22,38,.6)" }}>
-                  <iframe
-                    title={`Mapa: ${d.nombre}`}
-                    src={`https://www.google.com/maps?q=${encodeURIComponent(mapQ)}&output=embed`}
-                    className="absolute inset-0 h-full w-full"
-                    style={{ filter: "grayscale(0.35) contrast(1.05)" }}
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
-                </div>
-                <div className="relative mx-3 -mt-16 rounded-[26px] bg-white/90 p-6 backdrop-blur-md ring-1 ring-white sm:absolute sm:left-6 sm:top-6 sm:mx-0 sm:mt-0 sm:w-[340px] sm:p-7" style={{ boxShadow: "0 30px 60px -24px rgba(11,22,38,.5)" }}>
-                  <span className="grid h-11 w-11 place-items-center rounded-2xl" style={teclaAmarilla(accent)}>
-                    <Svg className="w-5 h-5">{icons.pin}</Svg>
-                  </span>
-                  {d.direccion && <p className="mt-4 text-2xl font-bold leading-tight tracking-[-0.02em]" style={D}>{d.direccion}</p>}
-                  {has(d.horarios) && (
-                    <dl className="mt-3 text-[15px]">
-                      {d.horarios.map((h) => (
-                        <div key={h.dias} className="flex justify-between gap-4 border-b border-black/10 py-2">
-                          <dt style={{ color: MUTED }}>{h.dias}</dt>
-                          <dd className="font-semibold">{h.horas}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  )}
-                  {d.email && (
-                    <a href={`mailto:${d.email}`} className="mt-3 flex items-center gap-2 text-[14.5px] font-semibold hover:underline" style={{ color: MUTED }}>
-                      <Svg className="w-4 h-4 shrink-0">{icons.mail}</Svg> <span className="min-w-0">{d.email.replace("@", "@​")}</span>
-                    </a>
-                  )}
-                  <a href={mapsSearch(mapQ)} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-[15px] font-bold" style={TECLA_NAVY}>
-                    Cómo llegar <Svg className="w-4 h-4">{icons.flecha}</Svg>
-                  </a>
-                </div>
+          <section id="ubicacion" className="relative grid items-center pt-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:pt-28 scroll-mt-10" aria-labelledby="ubicacion-titulo">
+            <div className={`order-first pl-4 pb-8 sm:pl-6 lg:order-last lg:pb-0 lg:pl-0 ${ALIGN_R}`}>
+              <Titulo id="ubicacion-titulo">Dónde estamos</Titulo>
+              <div className="relative z-10 mt-8 hidden rounded-[26px] bg-white/90 p-7 backdrop-blur-md ring-1 ring-white lg:-ml-28 lg:block" style={{ boxShadow: "0 30px 60px -24px rgba(11,22,38,.5)" }}>
+                <FichaUbicacion d={d} accent={accent} mapQ={mapQ} />
+              </div>
+            </div>
+            <div className="pr-3 sm:pr-6 lg:pr-0">
+              <div className="relative h-[320px] overflow-hidden rounded-r-[32px] bg-[#DCE2E9] sm:h-[420px] lg:h-[540px]" style={{ boxShadow: "0 40px 70px -40px rgba(11,22,38,.6)" }}>
+                <iframe
+                  title={`Mapa: ${d.nombre}`}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(mapQ)}&output=embed`}
+                  className="absolute inset-0 h-full w-full"
+                  style={{ filter: "grayscale(0.35) contrast(1.05)" }}
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+              <div className="relative z-10 ml-4 -mt-14 mr-1 rounded-[26px] bg-white/95 p-6 backdrop-blur-md ring-1 ring-white sm:ml-12 lg:hidden" style={{ boxShadow: "0 30px 60px -24px rgba(11,22,38,.5)" }}>
+                <FichaUbicacion d={d} accent={accent} mapQ={mapQ} />
               </div>
             </div>
           </section>
         )}
 
-        {/* ═══════════ CIERRE: la llave de luz ═══════════ */}
+        {/* ═══════════ CIERRE: bloque que entra desde la derecha, con la llave saliéndose ═══════════ */}
         {d.cierre && (wa || tel) && (
-          <section className="px-3 sm:px-6 py-20 sm:py-28" aria-labelledby="cierre">
+          <section className="relative pt-24 pb-20 lg:pt-36 lg:pb-28" aria-labelledby="cierre">
             <div
-              className="relative mx-auto grid max-w-6xl items-center gap-10 overflow-hidden rounded-[36px] px-6 py-14 sm:px-14 sm:py-16 lg:grid-cols-[1fr_auto]"
-              style={{ background: `radial-gradient(60% 80% at 80% 50%, #FFE3A0, transparent 70%), linear-gradient(135deg,#FFD15C,${accent})`, boxShadow: "inset 0 2px 0 rgba(255,255,255,.6), 0 50px 80px -40px rgba(185,127,0,.75)" }}
+              className={`relative ml-3 grid items-center rounded-l-[36px] py-14 pl-6 sm:ml-6 sm:py-16 sm:pl-12 lg:ml-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] lg:grid-cols-[minmax(0,1fr)_auto] lg:pl-14 ${ALIGN_R}`}
+              style={{ background: `radial-gradient(50% 90% at 85% 40%, #FFE3A0, transparent 70%), linear-gradient(120deg,#FFD15C,${accent})`, boxShadow: "inset 0 2px 0 rgba(255,255,255,.6), 0 50px 80px -40px rgba(185,127,0,.75)" }}
             >
               <div>
-                <h2 id="cierre" className="text-[2.6rem] sm:text-7xl font-extrabold leading-[0.95] tracking-[-0.045em]" style={{ ...D, color: NAVY }}>
+                <h2 id="cierre" className="max-w-2xl text-[2.6rem] sm:text-7xl font-extrabold leading-[0.95] tracking-[-0.045em]" style={{ ...D, color: NAVY }}>
                   {d.cierre}
                 </h2>
-                <div className="mt-9 grid gap-3.5 sm:flex sm:gap-4">
+                <div className="mt-9 grid gap-3.5 pr-4 sm:flex sm:gap-4 sm:pr-0">
                   {wa && (
                     <a href={wa} target="_blank" rel="noopener noreferrer" data-origen="cierre" className={tecla} style={TECLA_NAVY}>
                       <WhatsAppIcon className="w-6 h-6" /> {ctaText}
@@ -469,7 +508,8 @@ export default function TableroElectrico({ d }: { d: Demo }) {
                   )}
                 </div>
               </div>
-              <div className="hidden lg:block lg:pr-6">
+              {/* La llave sobresale por arriba del bloque */}
+              <div className="hidden lg:block lg:-mt-48 lg:mb-[-2rem] lg:pl-10 lg:scale-110">
                 <LlaveDeLuz accent={accent} />
               </div>
             </div>
@@ -478,10 +518,16 @@ export default function TableroElectrico({ d }: { d: Demo }) {
       </main>
 
       {/* ─── Pie ─── */}
-      <footer className="px-5 sm:px-8 pb-10">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-3 border-t border-black/10 pt-6 text-sm sm:flex-row sm:items-center" style={{ color: MUTED }}>
-          <p className="font-bold" style={{ ...D, color: NAVY }}>{d.nombre}</p>
-          <p>{[d.direccion, d.telefono].filter(Boolean).join(" · ")}</p>
+      <footer className={`pb-10 ${ALIGN_L} ${ALIGN_R}`}>
+        <div className="grid gap-4 border-t border-black/10 pt-8 text-sm sm:grid-cols-[1fr_auto] sm:items-end" style={{ color: MUTED }}>
+          <p className="text-2xl sm:text-4xl font-extrabold tracking-[-0.03em]" style={{ ...D, color: NAVY }}>
+            {marca}
+            {linea && <span className="block text-base font-semibold tracking-normal" style={{ color: MUTED }}>{linea}</span>}
+          </p>
+          <p className="sm:text-right leading-relaxed">
+            {d.direccion}
+            {d.telefono && <><br />{d.telefono}</>}
+          </p>
         </div>
       </footer>
 
