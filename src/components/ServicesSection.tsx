@@ -91,6 +91,10 @@ export default function ServicesSection() {
           ))}
         </div>
 
+        <p className="mt-6 max-w-2xl text-white/40 text-sm leading-relaxed">
+          Dominio y hosting a tu nombre: los contratás vos, así la página es siempre tuya. Te guío paso a paso para configurarlos.
+        </p>
+
         {/* ─── Servicios adicionales ─── */}
         <ScrollReveal>
           <span className="block mt-20 mb-8 text-vermilion text-[10px] uppercase tracking-[0.4em] font-bold" style={{ fontFamily: "var(--font-syne)" }}>

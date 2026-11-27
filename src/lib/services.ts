@@ -23,11 +23,11 @@ export const services: Service[] = [
     time: "48hs",
     ideal: "Sin nada digital todavía",
     features: [
-      "Landing page de 1 sección",
-      "Perfil de Empresa en Google optimizado",
-      "Botón de WhatsApp integrado",
-      "Dominio .com.ar a tu nombre",
-      "Hosting incluido por 1 año"
+      "Landing de 1 sección, pensada para celular",
+      "Botones de WhatsApp y llamada con mensaje prellenado",
+      "Servicios, horarios y mapa de ubicación",
+      "SEO básico: título y descripción para Google, y vista previa configurada al compartir el link por WhatsApp",
+      "2 rondas de cambios"
     ],
     cta: "Empezar Presencia"
   },
@@ -37,11 +37,13 @@ export const services: Service[] = [
     time: "5 días",
     ideal: "Quiere crecer online",
     features: [
-      "Web completa (3-4 secciones)",
-      "Sistema de turnos integrado",
-      "Todo lo del Plan Presencia",
-      "5 posts de Instagram diseñados",
-      "SEO técnico optimizado"
+      "Web completa de hasta 4 secciones",
+      "Galería de trabajos",
+      "Sección de reseñas (con las reseñas reales que elijas)",
+      "Botón de consulta por cada servicio",
+      "SEO técnico optimizado",
+      "Revisión de seguridad básica incluida (sin informe)",
+      "Todo lo del plan Presencia"
     ],
     cta: "Empezar Profesional",
     popular: true
@@ -52,11 +54,13 @@ export const services: Service[] = [
     time: "10 días",
     ideal: "Referente local CABA",
     features: [
-      "Web Premium + Branding básico",
-      "10 posts diseñados para redes",
-      "1 Reel / Video presentación",
-      "Estrategia de Reseñas Google",
-      "Todo lo del Plan Profesional"
+      "Inicio premium de hasta 6 secciones",
+      "Sistema de turnos online",
+      "Redacción de todos los textos",
+      "Una página por servicio (hasta 5), para aparecer en más búsquedas de Google",
+      "Tarjeta con código QR para pedir reseñas a tus clientes (diseño listo para imprimir)",
+      "1 mes de mantenimiento incluido",
+      "Todo lo del plan Profesional"
     ],
     cta: "Empezar Autoridad"
   }

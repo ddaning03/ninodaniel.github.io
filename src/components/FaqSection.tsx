@@ -17,11 +17,11 @@ const faqs = [
   },
   {
     q: "¿El dominio queda a mi nombre?",
-    a: "Sí. El .com.ar se registra con tus datos en NIC Argentina: es tuyo desde el primer día.",
+    a: "Sí. El dominio y el hosting los contratás vos a tu nombre, y yo te guío para configurarlos y conecto la página. Así no dependés de mí.",
   },
   {
-    q: "¿Qué pasa cuando se cumple el año de hosting?",
-    a: "Te aviso antes de que venza y te paso el costo de la renovación anual. No se corta nada sin que lo sepas.",
+    q: "¿Qué pasa cuando vence el hosting?",
+    a: "Como el hosting está a tu nombre, lo renovás vos directamente. Si tenés el mantenimiento mensual, te aviso antes del vencimiento.",
   },
   {
     q: "¿Y si después quiero cambiar algo?",
